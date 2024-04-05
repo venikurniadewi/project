@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Login\LoginController;   
+use App\Http\Controllers\Login\RegisterController;   
 use App\Http\Controllers\Login\ForgotPasswordController;
 use App\Http\Controllers\Login\LogoutController;
 use App\Http\Controllers\DashboardController;
@@ -34,7 +35,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/login', [LoginController::class, 'login']); //route post untuk login
 Route::get('/loginback', [LoginController::class, 'index']); 
 Route::get('/logout', [LogoutController::class, 'logout']);
-Route::post('/coba', [RegisterController::class, 'register'])->name('register.coba');
+Route::post('/registrasi', [RegisterController::class, 'register'])->name('register.coba');
 Route::get('/registrasi', [RegisterController::class, 'index'])->name('register.halaman');
 
 //route beranda
