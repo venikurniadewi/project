@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class IzinController extends Controller
 {
-    public function index()
+    public function izin()
     {
-        return view('izin');
+        return view('layouts.izin');
     }
 }

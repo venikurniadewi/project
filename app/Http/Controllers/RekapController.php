@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class RekapController extends Controller
 {
-    public function index()
+    public function rekap()
     {
-        return view('rekapabsen');
+        return view('layouts.rekapabsen');
     }
 }

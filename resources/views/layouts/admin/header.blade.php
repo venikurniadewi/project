@@ -19,12 +19,12 @@
         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
           <span class="avatar avatar-sm" style="background-image: url({{ asset('static/avatars/000m.jpg') }})"></span>
           <div class="d-none d-xl-block ps-2">
-            <div>Aldo</div>
+          <div>{{ Session::get('user_name') }}</div>
             <div class="mt-1 small text-secondary">Administrator</div>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <a href="./settings.html" class="dropdown-item">Settings</a>
+          <a href="./settings" class="dropdown-item">Settings</a>
           <a href="/logout" class="dropdown-item">Logout</a>
         </div>
       </div>

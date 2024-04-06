@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class TelatController extends Controller
 {
-    public function index()
+    public function terlambat()
     {
-        return view('tepatwaktu');
+        return view('layouts.terlambat');
     }
 }
