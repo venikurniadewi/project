@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Pegawai Baru</title>
+<<<<<<< HEAD
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,6 +60,14 @@
     <form action="{{ route('pegawai.store') }}" method="POST">
         @csrf
         <h1>Tambah Pegawai Baru</h1>
+=======
+    <!-- Tambahkan CSS Anda di sini -->
+</head>
+<body>
+    <h1>Tambah Pegawai Baru</h1>
+    <form action="{{ route('pegawai.store') }}" method="POST">
+        @csrf
+>>>>>>> ef307086c28b3681248d071ecfaa740ded6e1126
         <label for="no">No:</label><br>
         <input type="text" id="no" name="no"><br>
         <label for="kode">Kode:</label><br>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pegawai</title>
+<<<<<<< HEAD
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,5 +65,15 @@
             <button type="submit">Kembali</button>
         </form>
     </div>
+=======
+    <!-- Tambahkan CSS Anda di sini -->
+</head>
+<body>
+    <h1>Detail Pegawai</h1>
+    <p><strong>No:</strong> {{ $pegawai->no }}</p>
+    <p><strong>Kode:</strong> {{ $pegawai->kode }}</p>
+    <p><strong>Nama:</strong> {{ $pegawai->nama }}</p>
+    <p><strong>Jabatan:</strong> {{ $pegawai->jabatan }}</p>
+>>>>>>> ef307086c28b3681248d071ecfaa740ded6e1126
 </body>
 </html>

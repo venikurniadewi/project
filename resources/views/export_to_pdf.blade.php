@@ -46,7 +46,11 @@
                 <th>Nama Karyawan</th>
                 <th>Tanggal</th>
                 <th>Jam Masuk</th>
+<<<<<<< HEAD
                 <th>Keterangan</th>
+=======
+                <th>Jenis</th>
+>>>>>>> ef307086c28b3681248d071ecfaa740ded6e1126
                 <th>Alasan</th>
             </tr>
         </thead>

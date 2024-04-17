@@ -40,7 +40,11 @@
             @foreach($pegawai as $key => $item)
             <tr>
                 <td>{{ $key + 1 }}</td>
+<<<<<<< HEAD
                 <td>{{ $item->kode }}</td>
+=======
+                <td>{{ $item->id }}</td>
+>>>>>>> ef307086c28b3681248d071ecfaa740ded6e1126
                 <td>{{ $item->nama }}</td>
                 <td>{{ $item->jabatan }}</td>
                 <td class="action-buttons">
