@@ -54,7 +54,7 @@
                             <div class="float-left mini-stat-img mr-4">
                                 <i class="ti-check-box" style="font-size: 20px"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Tepat Waktu <br>Hari ini</h5>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Izin <br>Hari ini</h5>
                             <h4 class="font-500">0<i class="text-success ml-2"></i></h4>
                             <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#02a499&quot;, &quot;#f2f2f2&quot;], &quot;innerRadius&quot;: 28, &quot;radius&quot;: 32 }" data-width="72" data-height="72" style="display: none;">0/4</span>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="float-left mini-stat-img mr-4">
                                 <i class="ti-check-box" style="font-size: 20px"></i>
                             </div>
-                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Tepat Waktu <br>Hari ini</h5>
+                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Sakit <br>Hari ini</h5>
                             <h4 class="font-500">0<i class="text-success ml-2"></i></h4>
                             <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#02a499&quot;, &quot;#f2f2f2&quot;], &quot;innerRadius&quot;: 28, &quot;radius&quot;: 32 }" data-width="72" data-height="72" style="display: none;">0/4</span>
                         </div>

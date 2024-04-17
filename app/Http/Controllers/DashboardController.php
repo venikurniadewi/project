@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pegawai;
 
 class DashboardController extends Controller
 {
@@ -36,10 +37,13 @@ class DashboardController extends Controller
     }
     public function data()
     {
-        return view('datakaryawan');
+        $pegawai = Pegawai::all();
+        return view('datakaryawan', ['pegawai' => $pegawai]);
     }
     public function setting()
     {
         return view('setting');
     }
+    
+
 }

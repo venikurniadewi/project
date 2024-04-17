@@ -26,12 +26,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title">Daftar {{$title}}</h3>
-                            <div>
-                                <button class="btn btn-sm btn-primary mr-2" id="btn-export" data-toggle="modal" data-target="#modalExportRekap">
-                                    <i class="fas fa-file-excel"></i>
-                                    Export Rekap Karyawan
-                                </button>
-                            </div>
+
                         </div>
                     </div>
                     <div class="card-body">
