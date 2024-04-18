@@ -8,12 +8,6 @@ use App\Http\Controllers\Login\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PegawaiController;
-// use App\Http\Controllers\DKController;
-// use App\Http\Controllers\IzinController;
-// use App\Http\Controllers\JKController;
-// use App\Http\Controllers\RekapController;
-// use App\Http\Controllers\TepatController;
-// use App\Http\Controllers\TelatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +49,7 @@ Route::get('/settings', [DashboardController::class, 'setting']);
 //Route Ekspor
 Route::post('/presensi/export/pdf', [ExportController::class, 'exportToPdf']);
 Route::post('/presensi/export/excel', [ExportController::class, 'exportToExcel']);
+Route::get('/exportjk', [ExportController::class, 'exportjk'])->name('exportjk');
 
 // web.php
 

@@ -14,7 +14,8 @@ class DashboardController extends Controller
 
     public function jumlah()
     {
-        return view('jumlahkaryawan');
+        $pegawai = Pegawai::all();
+        return view('jumlahkaryawan', ['pegawai' => $pegawai]);
     }
 
     public function tepatwaktu()
