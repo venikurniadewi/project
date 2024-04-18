@@ -20,17 +20,17 @@ class DashboardController extends Controller
 
     public function tepatwaktu()
     {
-        return view('tepatwaktu');
+        return view('attend.tepatwaktu');
     }
 
     public function terlambat()
     {
-        return view('terlambat');
+        return view('attend.terlambat');
     }
 
     public function izin()
     {
-        return view('izin');
+        return view('attend.izin');
     }
     public function rekap()
     {

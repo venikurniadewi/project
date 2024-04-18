@@ -15,7 +15,7 @@ class ExportController extends Controller
         $presensis = Presensi::all();
 
         $pdf = new Dompdf();
-        $pdf->loadHTML(view('export_to_pdf', compact('presensis')));
+        $pdf->loadHTML(view('export.export_to_pdf', compact('presensis')));
         $pdf->setPaper('A4', 'landscape');
         $pdf->render();
         $pdf->stream('presensi.pdf');
