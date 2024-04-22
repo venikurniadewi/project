@@ -34,7 +34,8 @@
         }
 
         label,
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"] {
             display: inline-block;
             width: 100%;
             margin-bottom: 10px;
@@ -56,18 +57,24 @@
     </style>
 </head>
 <body>
-    <form action="{{ route('pegawai.store') }}" method="POST">
-        @csrf
-        <h1>Tambah Pegawai Baru</h1>
-        <label for="no">No:</label><br>
-        <input type="text" id="no" name="no"><br>
-        <label for="kode">Kode:</label><br>
-        <input type="text" id="kode" name="kode"><br>
-        <label for="nama">Nama:</label><br>
-        <input type="text" id="nama" name="nama"><br>
-        <label for="jabatan">Jabatan:</label><br>
-        <input type="text" id="jabatan" name="jabatan"><br><br>
-        <button type="submit">Simpan</button>
-    </form>
+<form action="{{ route('pegawai.store') }}" method="POST">
+    @csrf
+    <h1>Tambah Pegawai Baru</h1>
+    <!-- <label for="no">No:</label><br>
+    <input type="text" id="no" name="no"><br> -->
+    <label for="name">Nama:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="email">Email:</label><br>
+    <input type="text" id="email" name="email"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <label for="phone_number">Nomor Telepon:</label><br>
+    <input type="text" id="phone_number" name="phone_number"><br>
+    <label for="job_title">Jabatan:</label><br>
+    <input type="text" id="job_title" name="job_title"><br>
+    <label for="address">Alamat:</label><br>
+    <input type="text" id="address" name="address"><br><br>
+    <button type="submit">Simpan</button>
+</form>
 </body>
 </html>

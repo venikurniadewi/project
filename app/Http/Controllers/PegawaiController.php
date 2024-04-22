@@ -7,72 +7,78 @@ use App\Models\Pegawai;
 
 class PegawaiController extends Controller
 {
+    // Menampilkan semua data pegawai
     public function data()
     {
         $pegawai = Pegawai::all();
         return view('pegawai.index', ['pegawai' => $pegawai]);
     }
-    // Menampilkan halaman tambah data karyawan
+
+    // Menampilkan halaman tambah data pegawai
     public function tambah()
     {
         return view('pegawai.tambah');
     }
 
-    // Menyimpan data karyawan baru
+    // Menyimpan data pegawai baru
     public function store(Request $request)
     {
         // Validasi data yang dikirimkan dari formulir
         $validatedData = $request->validate([
-            'no' => 'required',
-            'kode' => 'required|unique:pegawais',
-            'nama' => 'required',
-            'jabatan' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:pegawais',
+            'password' => 'required',
+            'phone_number' => 'required',
+            'job_title' => 'required',
+            'address' => 'required',
         ]);
 
-        // Simpan data karyawan baru ke dalam database
+        // Simpan data pegawai baru ke dalam database
         Pegawai::create($validatedData);
 
-        // Redirect kembali ke halaman data karyawan setelah data berhasil disimpan
+        // Redirect kembali ke halaman data pegawai setelah data berhasil disimpan
         return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil ditambahkan.');
     }
 
-    // Menampilkan detail karyawan
-    public function lihat($id)
+    // Menampilkan detail pegawai
+    public function show($id)
     {
         $pegawai = Pegawai::findOrFail($id);
         return view('pegawai.lihat', ['pegawai' => $pegawai]);
     }
 
-    // Menampilkan halaman edit data karyawan
+    // Menampilkan halaman edit data pegawai
     public function edit($id)
     {
         $pegawai = Pegawai::findOrFail($id);
         return view('pegawai.edit', ['pegawai' => $pegawai]);
     }
 
-    // Mengupdate data karyawan
+    // Mengupdate data pegawai
     public function update(Request $request, $id)
     {
         // Validasi data yang dikirimkan dari formulir
         $validatedData = $request->validate([
-            'no' => 'required',
-            'kode' => 'required|unique:pegawais,kode,'.$id,
-            'nama' => 'required',
-            'jabatan' => 'required',
+            'name' => 'required',
+            'email' => 'required|unique:pegawais,email,'.$id,
+            'password' => 'required',
+            'phone_number' => 'required',
+            'job_title' => 'required',
+            'address' => 'required',
         ]);
 
-        // Temukan karyawan yang ingin diupdate
+        // Temukan pegawai yang ingin diupdate
         $pegawai = Pegawai::findOrFail($id);
 
-        // Update data karyawan
+        // Update data pegawai
         $pegawai->update($validatedData);
 
-        // Redirect kembali ke halaman data karyawan setelah data berhasil diupdate
-        return redirect()->route('pegawai.index')->with('success', 'Data Pegawai berhasil diperbarui.');
+        // Redirect kembali ke halaman data pegawai setelah data berhasil diupdate
+        return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui.');
     }
 
-    // Menghapus data karyawan
-    public function hapus($id)
+    // Menghapus data pegawai
+    public function destroy($id)
     {
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->delete();

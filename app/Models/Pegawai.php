@@ -2,9 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pegawai extends Model
 {
-    protected $fillable = ['no', 'kode', 'nama', 'jabatan'];
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'phone_number',
+        'job_title',
+        'address',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
 }

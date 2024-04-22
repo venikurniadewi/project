@@ -8,6 +8,8 @@ use App\Http\Controllers\Login\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\ProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -53,26 +55,25 @@ Route::get('/exportjk', [ExportController::class, 'exportjk'])->name('exportjk')
 
 // web.php
 
-
 Route::get('/pegawai', [PegawaiController::class, 'data'])->name('pegawai.index');
-
-
 // Menampilkan form tambah pegawai
 Route::get('/pegawai/tambah', [PegawaiController::class, 'tambah'])->name('pegawai.tambah');
-
 // Menyimpan data pegawai baru
 Route::post('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
-
 // Menampilkan detail pegawai
-Route::get('/pegawai/{id}', [PegawaiController::class, 'lihat'])->name('pegawai.lihat');
-
+Route::get('/pegawai/{id}', [PegawaiController::class, 'show'])->name('pegawai.show');
 // Menampilkan form edit pegawai
 Route::get('/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-
 // Menyimpan perubahan data pegawai
 Route::put('/pegawai/{id}/update', [PegawaiController::class, 'update'])->name('pegawai.update');
-
 // Menghapus data pegawai
 Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus'])->name('pegawai.hapus');
+
+Route::post('/change-profile-photo', [ProfileController::class, 'changeProfilePhoto'])->name('change.profile.photo');
+Route::post('/delete-profile-photo', [ProfileController::class, 'deleteProfilePhoto'])->name('delete.profile.photo');
+
+
+
+
 
 

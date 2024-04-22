@@ -30,20 +30,22 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>ID</th>
-                <th>Nama</th>
+                <th>Nama Pegawai</th>
+                <th>Nomor Telepon</th>
                 <th>Jabatan</th>
+                <th>Alamat</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($pegawais as $key => $pegawai)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $pegawai->kode }}</td>
-                <td>{{ $pegawai->nama }}</td>
-                <td>{{ $pegawai->jabatan }}</td>
-            </tr>
-            @endforeach
+        @foreach($pegawais as $key => $item)
+         <tr>
+         <td>{{ $item->id }}</td>
+         <td>{{ $item->name }}</td>
+         <td>{{ $item->phone_number }}</td>
+         <td>{{ $item->job_title }}</td>
+         <td>{{ $item->address }}</td>
+         </tr>
+        @endforeach
         </tbody>
     </table>
 </body>

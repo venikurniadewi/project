@@ -29,32 +29,39 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>ID</th>
                 <th>Nama Pegawai</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Nomor Telepon</th>
                 <th>Jabatan</th>
+                <th>Alamat</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Loop through your data here to display all employees -->
-            @foreach($pegawai as $key => $item)
-            <tr>
-                <td>{{ $key + 1 }}</td>
-                <td>{{ $item->kode }}</td>
-                <td>{{ $item->nama }}</td>
-                <td>{{ $item->jabatan }}</td>
-                <td class="action-buttons">
-                    <a href="{{ route('pegawai.lihat', ['id' => $item->id]) }}" class="btn-green"><i class="fas fa-eye"></i> Lihat</a>
-                    <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}" class="btn-orange"><i class="fas fa-edit"></i> Edit</a>
-                    <form action="{{ route('pegawai.hapus', ['id' => $item->id]) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-red"><i class="fas fa-trash-alt"></i> Hapus</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
+    <!-- Loop through your data here to display all employees -->
+    @foreach($pegawai as $key => $item)
+    <tr>
+        <td>{{ $item->id }}</td>
+        <td>{{ $item->name }}</td>
+        <td>{{ $item->email }}</td>
+        <td>{{ $item->password }}</td>
+        <td>{{ $item->phone_number }}</td>
+        <td>{{ $item->job_title }}</td>
+        <td>{{ $item->address }}</td>
+        <td class="action-buttons">
+            <a href="{{ route('pegawai.show', ['id' => $item->id]) }}" class="btn-green"><i class="fas fa-eye"></i> Lihat</a>
+            <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}" class="btn-orange"><i class="fas fa-edit"></i> Edit</a>
+            <form action="{{ route('pegawai.hapus', ['id' => $item->id]) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn-red"><i class="fas fa-trash-alt"></i> Hapus</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</tbody>
+
     </table>
 
     <!-- JavaScript untuk meng-handle pencarian -->

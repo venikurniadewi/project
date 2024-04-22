@@ -34,7 +34,8 @@
         }
 
         label,
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"] {
             display: inline-block;
             width: 100%;
             margin-bottom: 10px;
@@ -63,14 +64,20 @@
         @csrf
         @method('PUT')
         <h1>Edit Pegawai</h1>
-        <label for="no">No:</label>
-        <input type="text" id="no" name="no" value="{{ $pegawai->no }}"><br>
-        <label for="kode">Kode:</label>
-        <input type="text" id="kode" name="kode" value="{{ $pegawai->kode }}"><br>
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama" value="{{ $pegawai->nama }}"><br>
-        <label for="jabatan">Jabatan:</label>
-        <input type="text" id="jabatan" name="jabatan" value="{{ $pegawai->jabatan }}"><br><br>
+        <!-- <label for="no">No:</label>
+        <input type="text" id="no" name="no" value="{{ $pegawai->no }}"><br> -->
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" value="{{ $pegawai->name }}"><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="{{ $pegawai->email }}"><br>
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password" value="{{ $pegawai->password }}"><br>
+        <label for="phone_number">Nomor Telepon:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ $pegawai->phone_number }}"><br>
+        <label for="job_title">Jabatan:</label>
+        <input type="text" id="job_title" name="job_title" value="{{ $pegawai->job_title }}"><br>
+        <label for="address">Alamat:</label>
+        <input type="text" id="address" name="address" value="{{ $pegawai->address }}"><br><br>
         <button type="submit">Simpan Perubahan</button>
         <a href="/data_karyawan"><button type="button">Batal</button></a>
     </form>

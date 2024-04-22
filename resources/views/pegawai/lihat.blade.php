@@ -54,10 +54,12 @@
 <body>
     <div class="container">
         <h1>Detail Pegawai</h1>
-        <p><strong>No:</strong> {{ $pegawai->no }}</p>
-        <p><strong>Kode:</strong> {{ $pegawai->kode }}</p>
-        <p><strong>Nama:</strong> {{ $pegawai->nama }}</p>
-        <p><strong>Jabatan:</strong> {{ $pegawai->jabatan }}</p>
+        <p><strong>No:</strong> {{ $pegawai->id }}</p>
+        <p><strong>Nama:</strong> {{ $pegawai->name }}</p>
+        <p><strong>Email:</strong> {{ $pegawai->email }}</p>
+        <p><strong>Nomor Telepon:</strong> {{ $pegawai->phone_number }}</p>
+        <p><strong>Jabatan:</strong> {{ $pegawai->job_title }}</p>
+        <p><strong>Alamat:</strong> {{ $pegawai->address }}</p>
 
         <!-- Tombol Kembali -->
         <form action="/data_karyawan" method="get">

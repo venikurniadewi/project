@@ -35,30 +35,23 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="table-list">
                                 <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>ID</th>
-                                        <th>Nama</th>
-                                        <th>Jabatan</th>
-                                    </tr>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Jabatan</th>
+                                    <th>Alamat</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Loop through your data here to display all employees -->
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $item->kode }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->jabatan }}</td>
-                                        <!-- <td class="action-buttons">
-                                            <a href="{{ route('pegawai.lihat', ['id' => $item->id]) }}" class="btn-green"><i class="fas fa-eye"></i> Lihat</a>
-                                            <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}" class="btn-orange"><i class="fas fa-edit"></i> Edit</a>
-                                            <form action="{{ route('pegawai.hapus', ['id' => $item->id]) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn-red"><i class="fas fa-trash-alt"></i> Hapus</button>
-                                            </form>
-                                        </td> -->
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->phone_number }}</td>
+                                    <td>{{ $item->job_title }}</td>
+                                    <td>{{ $item->address }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

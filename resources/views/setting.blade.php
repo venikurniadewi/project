@@ -32,29 +32,29 @@
                     <h2 class="mb-4">My Account</h2>
                     <h3 class="card-title">Profile Details</h3>
                     <div class="row align-items-center">
-                      <div class="col-auto"><span class="avatar avatar-xl" style="background-image: url(./static/avatars/000m.jpg)"></span>
+                      <div class="col-auto"><span class="avatar avatar-xl" style="background-image: url(.tabler/static/avatars/000m.jpg)"></span>
                       </div>
                       <div class="col-auto"><a href="#" class="btn">
-                          Change avatar
+                          Ganti Foto Profil
                         </a></div>
                       <div class="col-auto"><a href="#" class="btn btn-ghost-danger">
-                          Delete avatar
+                          Hapus Foto Profil
                         </a></div>
                     </div>
                     <h3 class="card-title mt-4">Admin Profile</h3>
                     <div class="row g-3">
                       <div class="col-md">
-                        <div class="form-label">Name</div>
+                        <div class="form-label">Nama</div>
                         <input type="text" class="form-control" value="Tabler">
                       </div>
                       <div class="col-md">
-                        <div class="form-label">E-mail</div>
+                        <div class="form-label">ID</div>
                         <input type="text" class="form-control" value="560afc32">
                       </div>
                       <div class="col-md">
-                        <div class="form-label">Password</div>
+                        <div class="form-label">E-mail</div>
                         <input type="text" class="form-control"
-			       value="Peimei, China">
+			                  value="Peimei, China">
                       </div>
                     </div>
                   </div>
