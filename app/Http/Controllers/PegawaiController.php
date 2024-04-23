@@ -78,7 +78,7 @@ class PegawaiController extends Controller
     }
 
     // Menghapus data pegawai
-    public function destroy($id)
+    public function hapus($id)
     {
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->delete();

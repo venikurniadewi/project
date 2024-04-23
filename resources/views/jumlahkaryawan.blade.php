@@ -1,17 +1,15 @@
 @extends('layouts.admin.dashboard')
 
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
-                </ol>
-            </div><!-- /.col -->
-        </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<div class="d-flex justify-content-between align-items-center mt-3 mb-3">
+
+    <ul>
+        <a type=button href="{{ route('exportjk') }}" class="btn btn-primary" type="button" style="padding: 5px 10px; color: #fff; margin-right: 18px; margin-top: 10px;" onclick="togglePopup()">
+            <i class="fas fa-plus"></i> &nbsp;Export Rekap Karyawan
+</a>
+    </ul>
 </div>
+
 
 <section class="content">
     <div class="container-fluid">
@@ -20,11 +18,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="card-title">Daftar Pegawai</h3>
+                            <h1 class="card-title">Daftar Pegawai</h1>
                             <div>
-                                <a href="{{ route('exportjk') }}" class="btn btn-sm btn-primary mr-2">
+                                <!-- <a href="{{ route('exportjk') }}" class="btn btn-sm btn-primary mr-2">
                                     <i class="fas fa-file-excel"></i> Export Rekap Karyawan
-                                </a>
+                                </a> -->
                                 <!-- <button class="btn btn-sm btn-success" id="btn-add-new" type="button" data-toggle="modal" data-target="#modalTambahKaryawan">
                                     <i class="fas fa-plus"></i> Tambah Pegawai
                                 </button> -->
@@ -63,4 +61,6 @@
         </div>
     </div>
 </section>
+
+
 @endsection
