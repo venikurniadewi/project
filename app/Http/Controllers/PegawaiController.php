@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller
 {
@@ -82,6 +83,10 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::findOrFail($id);
         $pegawai->delete();
+
+        // Set auto-increment ID ke 1 kembali
+        DB::statement('ALTER TABLE pegawais AUTO_INCREMENT = 1');
+
         return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil dihapus.');
     }
 }

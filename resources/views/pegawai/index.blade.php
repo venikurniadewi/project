@@ -44,7 +44,7 @@
                                     <!-- Loop through your data here to display all employees -->
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->password }}</td>

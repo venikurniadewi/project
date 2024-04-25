@@ -8,7 +8,8 @@ use App\Http\Controllers\Login\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PegawaiController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\API\AttendanceController;
+
 
 
 /*
@@ -69,8 +70,10 @@ Route::put('/pegawai/{id}/update', [PegawaiController::class, 'update'])->name('
 // Menghapus data pegawai
 Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus'])->name('pegawai.hapus');
 
-Route::post('/change-profile-photo', [ProfileController::class, 'changeProfilePhoto'])->name('change.profile.photo');
-Route::post('/delete-profile-photo', [ProfileController::class, 'deleteProfilePhoto'])->name('delete.profile.photo');
+
+Route::post('save-attendance', [AttendanceController::class, 'saveAttendance']);
+
+
 
 
 
