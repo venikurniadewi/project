@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pegawai</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon.png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,23 +15,20 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('/soba.jpg'); /* Ganti '/soba.jpeg' dengan path relatif ke gambar Anda */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #f2f2f2; /* Ubah latar belakang body menjadi abu-abu muda */
         }
 
         .container {
             max-width: 600px;
-            background-color: rgba(255, 255, 255, 20); /* Warna latar belakang transparan */
+            background-color: #ffffff; /* Ubah latar belakang formulir menjadi putih */
             border-radius: 8px;
             padding: 50px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            opacity: 0.9; /* Opacity konten */
         }
 
         h1 {
             color: #333;
+            margin-bottom: 20px;
         }
 
         p {
@@ -38,16 +37,31 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #063970;
             color: #fff;
             border: none;
             border-radius: 4px;
             padding: 10px 20px;
             cursor: pointer;
+            transition: background-color 0.3s; /* Tambah transisi saat hover */
         }
 
         button:hover {
             background-color: #0056b3;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            transition: border-color 0.3s; /* Tambah transisi saat fokus */
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #063970;
         }
     </style>
 </head>

@@ -8,42 +8,46 @@ use App\Models\Pegawai;
 class DashboardController extends Controller
 {
     public function index()
-    {
-        return view('dashboardd');
-    }
+{
+    $npage = 0;
+    return view('dashboardd', compact('npage'));
+}
 
     public function jumlah()
     {
+        $npage = 1;
         $pegawai = Pegawai::all();
-        return view('jumlahkaryawan', ['pegawai' => $pegawai]);
+        return view('jumlahkaryawan', compact('pegawai', 'npage'));
     }
 
     public function tepatwaktu()
     {
-        return view('attend.tepatwaktu');
+        $npage = 2;
+        return view('attend.tepatwaktu', compact('npage'));
     }
 
     public function terlambat()
     {
-        return view('attend.terlambat');
+        $npage = 3;
+        return view('attend.terlambat', compact('npage'));
     }
 
     public function izin()
     {
-        return view('attend.izin');
+        $npage = 4;
+        return view('attend.izin', compact('npage'));
     }
     public function rekap()
     {
-        return view('rekapabsen');
+        $npage = 6;
+        return view('rekapabsen', compact('npage'));
     }
-    public function data()
+    
+
+    public function getPegawai()
     {
-        $pegawai = Pegawai::all();
-        return view('datakaryawan', ['pegawai' => $pegawai]);
-    }
-    public function setting()
-    {
-        return view('setting');
+        $pegawai = Pegawai::all('name');
+        return response()->json($pegawai);
     }
     
 

@@ -11,9 +11,13 @@ class PegawaiController extends Controller
     // Menampilkan semua data pegawai
     public function data()
     {
-        $pegawai = Pegawai::all();
-        return view('pegawai.index', ['pegawai' => $pegawai]);
+        $npage = 5;
+        // $pegawai = Pegawai::all();
+        // return view('pegawai.index', ['pegawai' => $pegawai]);
+         $pegawai = Pegawai::orderBy('created_at', 'desc')->paginate(5);
+        return view ('pegawai.index', compact('pegawai', 'npage'));
     }
+    
 
     // Menampilkan halaman tambah data pegawai
     public function tambah()
