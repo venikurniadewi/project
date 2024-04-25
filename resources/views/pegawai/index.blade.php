@@ -22,6 +22,10 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h1 class="card-title">Data Profile Karyawan</h1>
+                            <!-- Search bar on the right side -->
+                            <div class="ml-auto"> <!-- Menggunakan ml-auto untuk membuat elemen berada di sebelah kanan -->
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari..." style="padding: 5px; margin-right: 18px;"> <!-- Menambahkan margin-right agar tata letaknya sesuai -->
+    </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -30,7 +34,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-left">No</th>
-                                        <th class="text-left">Nama Pegawai</th>
+                                        <th class="text-left">Nama Karyawan</th>
                                         <th class="text-left">Email</th>
                                         <th class="text-left">Password</th>
                                         <th class="text-left">Nomor Telepon</th>
@@ -42,9 +46,14 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop through your data here to display all employees -->
+                                    @php
+                                    $currentPage = $pegawai->currentPage() ?? 1; // Get current page
+                                    $startNumber = ($currentPage - 1) * 10 + 1; // Calculate starting number
+                                    @endphp
+
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
+                                    <td>{{ ($pegawai->currentPage() - 1) * $pegawai->perPage() + $loop->index + 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->password }}</td>
@@ -72,6 +81,28 @@
     </div>
 </section>
 
+<!-- Pagination -->
+<br></br>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item {{ ($pegawai->onFirstPage()) ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $pegawai->previousPageUrl() }}">
+                <span class="page-text-box">Previous</span>
+            </a>
+        </li>
+        @for ($i = 1; $i <= $pegawai->lastPage(); $i++)
+            <li class="page-item {{ ($pegawai->currentPage() == $i) ? 'active' : '' }}">
+                <a class="page-link" href="{{ $pegawai->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        <li class="page-item {{ ($pegawai->currentPage() == $pegawai->lastPage()) ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $pegawai->nextPageUrl() }}">Next</a>
+        </li>
+    </ul>
+</nav>
+
+        <!-- End Pagination -->
+
 <!-- JavaScript untuk meng-handle pencarian -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Tambahkan CSS Anda di sini -->
@@ -85,7 +116,7 @@
         table = document.querySelector("table");
         tr = table.getElementsByTagName("tr");
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0]; // Ubah nomor sesuai dengan kolom yang ingin Anda cari
+            td = tr[i].getElementsByTagName("td")[1]; // Targeting the second column (employee name)
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {

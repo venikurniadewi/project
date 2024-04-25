@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
+    <title>E-Presensi Karyawan</title>
     <script defer data-api="/stats/api/event" data-domain="preview.tabler.io" src="/stats/js/script.js"></script>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon.png">
     <!-- CSS files -->
     <link href="{{ asset('tabler/css/tabler.min.css?1695847769') }}" rel="stylesheet"/>
     <link href="{{ asset('tabler/css/tabler-flags.min.css?1695847769') }}" rel="stylesheet"/>
@@ -44,5 +44,29 @@
     <!-- Tabler Core -->
     <script src="{{ asset('tabler/js/tabler.min.js?1695847769') }}" defer></script>
     <script src="{{ asset('tabler/js/demo.min.js?1695847769') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+    // Permintaan AJAX untuk mendapatkan daftar pegawai
+    $.get("/data-pegawai", function(data){
+        // Iterasi melalui setiap pegawai dan tambahkan sebagai opsi ke dalam dropdown pegawai
+        $.each(data, function(index, pegawai){
+            $('#pegawai').append('<option value="'+pegawai.name+'">'+pegawai.name+'</option>');
+        });
+    })
+    .done(function() {
+        // Tampilkan pesan log ketika permintaan AJAX berhasil dikirim
+        console.log("Permintaan AJAX berhasil dikirim.");
+    })
+    .fail(function(jqXHR, textStatus, errorThrown) {
+        // Tampilkan pesan kesalahan jika permintaan AJAX gagal
+        console.error("AJAX Error: " + textStatus, errorThrown);
+    });
+});
+
+
+</script>
+   
+<script>
 </body>
 </html>

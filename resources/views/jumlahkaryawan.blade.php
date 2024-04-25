@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h1 class="card-title">Daftar Pegawai</h1>
+                            <h1 class="card-title">Daftar Karyawan</h1>
                             <div>
                                 <!-- <a href="{{ route('exportjk') }}" class="btn btn-sm btn-primary mr-2">
                                     <i class="fas fa-file-excel"></i> Export Rekap Karyawan
@@ -35,7 +35,7 @@
                                 <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Pegawai</th>
+                                    <th>Nama Karyawan</th>
                                     <th>Nomor Telepon</th>
                                     <th>Jabatan</th>
                                     <th>Alamat</th>
@@ -45,7 +45,7 @@
                                     <!-- Loop through your data here to display all employees -->
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $key + 1  }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone_number }}</td>
                                     <td>{{ $item->job_title }}</td>

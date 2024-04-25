@@ -39,7 +39,7 @@ Route::post('/registrasi', [RegisterController::class, 'register'])->name('regis
 Route::get('/registrasi', [RegisterController::class, 'index'])->name('register.halaman');
 
 //route beranda
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/jumlah_karyawan', [DashboardController::class, 'jumlah']);
 Route::get('/tepat_waktu', [DashboardController::class, 'tepatwaktu']);
 Route::get('/terlambat', [DashboardController::class, 'terlambat']);
@@ -47,6 +47,7 @@ Route::get('/izin', [DashboardController::class, 'izin']);
 Route::get('/rekap_absen', [DashboardController::class, 'rekap']);
 Route::get('/data_karyawan', [PegawaiController::class, 'data']);
 Route::get('/settings', [DashboardController::class, 'setting']);
+Route::get('/data-pegawai', [DashboardController::class, 'getPegawai']);
 
 //Route Ekspor
 Route::post('/presensi/export/pdf', [ExportController::class, 'exportToPdf']);

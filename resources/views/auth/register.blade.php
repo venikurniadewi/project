@@ -25,12 +25,6 @@
 <script src="{{ asset('tabler/js/demo-theme.min.js?1695847769') }}"></script>
 <div class="page page-center">
     <div class="container container-tight py-4">
-        <div class="text-center mb-4">
-            <a href="." class="navbar-brand navbar-brand-autodark">
-                <img src="{{ asset('tabler/static/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
-            </a>
-        </div>
-        
         <form class="card card-md" action="{{ route('register.coba') }}" method="POST">
             @csrf
             <div class="card-body">
