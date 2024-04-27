@@ -11,8 +11,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" rel="apple-touch-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/ags.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ags.png">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -41,25 +41,27 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
+  <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto">
+            <a>
+                <img src="{{ asset('tabler/static/ags.png') }}" alt="Logo" class="img-fluid">
+                Arsenet Global Solution
+            </a>
+        </h1>
 
-      <h1 class="logo me-auto"><a>E-PK</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="#about">About</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
     </div>
-  </header><!-- End Header -->
+</header>
+<!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
@@ -67,18 +69,21 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>E-Presensi Karyawan</h1>
-          <h2>Sistem digital yang digunakan oleh perusahaan untuk mencatat dan memantau kehadiran karyawan secara elektronik. 
-            Sistem ini memungkinkan perusahaan untuk lebih efisien dalam mengelola data kehadiran karyawan, mengurangi kesalahan pencatatan, dan meningkatkan akurasi pelaporan. 
-            Selain itu, E-Presensi juga dapat memberikan data real-time tentang kehadiran karyawan, yang berguna untuk pengambilan keputusan manajemen dan pengawasan.</h2>
+          <h1>E-Presensi AGS</h1>
+          <h2>Arsenet adalah perusahaan yang bergerak di bidang industri teknologi dan menawarkan layanan jaringan telekomunikasi, Internet Penyedia Layanan (ISP) (Fiber Optic, Wireless dan Satelit) Sejak 2013.
+Jangkauan Internet di Indonesia
+80%
+Akses Individual dan Korporasi
+75%</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="/login" class="btn-get-started scrollto">Admin</a>
             <a href="/register" class="btn-get-started scrollto">Daftar Admin</a>
             </div>
         </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="{{ asset('arsha/assets/img/hero-img.png') }}" class="img-fluid animated" alt="">
-        </div>
+        <div class="col-lg-6 order-1 order-lg-2 ags" data-aos="zoom-in" data-aos-delay="1000">
+    <img src="{{ asset('arsha/assets/img/ags.png') }}" class="img-fluid animated" alt="" style="width: 520px; height: 520px;">
+</div>
+
       </div>
     </div>
 
@@ -97,23 +102,25 @@
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('arsha/assets/img/clients/client-3.png') }}" class="img-fluid" alt="">
+          <img src="{{ asset('arsha/assets/img/clients/ags.png') }}" alt="Logo" class="img-fluid">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('arsha/assets/img/clients/client-5.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('arsha/assets/img/clients/ags1.png') }}" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('arsha/assets/img/clients/client-6.png') }}" class="img-fluid" alt="">
+            <img src="{{ asset('arsha/assets/img/clients/ags1.png') }}" class="img-fluid" alt="">
           </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+          <img src="{{ asset('arsha/assets/img/clients/ags.png') }}" alt="Logo" class="img-fluid">
+          </div>
+
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
             <img src="{{ asset('arsha/assets/img/clients/client-2.png') }}" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="{{ asset('arsha/assets/img/clients/client-3.png') }}" class="img-fluid" alt="">
-          </div>
 
         </div>
 
@@ -163,8 +170,10 @@
         <div class="info">
           <div class="address">
             <i class="bi bi-geo-alt"></i>
-            <h4>Location:</h4>
-            <p>Gedung Jurusan TI Politeknik Negeri Jember</p>
+            <h4>Lokasi Kami:</h4>
+            <p>M-TEN BUILDING 11 FLOOR —
+Kuningan Barat Mampang Prapatan
+Jakarta Selatan, DKI Jakarta</p>
           </div>
         </div>
       </div>
@@ -174,7 +183,7 @@
           <div class="email">
             <i class="bi bi-envelope"></i>
             <h4>Email:</h4>
-            <p>politeknik@polije.ac.id</p>
+            <p>info@arsenet.co.id</p>
           </div>
         </div>
       </div>
@@ -183,8 +192,8 @@
         <div class="info">
           <div class="phone">
             <i class="bi bi-phone"></i>
-            <h4>Call:</h4>
-            <p>62 331 333533</p>
+            <h4>No Telepon:</h4>
+            <p>+62 811-3821-1212</p>
           </div>
         </div>
       </div>

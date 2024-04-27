@@ -3,8 +3,8 @@
 <head>
     <title>E-Presensi Karyawan</title>
     <script defer data-api="/stats/api/event" data-domain="preview.tabler.io" src="/stats/js/script.js"></script>
-    <link rel="icon" type="image/png" sizes="32x32" href="/icon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/ags.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/ags.png">
     <!-- CSS files -->
     <link href="{{ asset('tabler/css/tabler.min.css?1695847769') }}" rel="stylesheet"/>
     <link href="{{ asset('tabler/css/tabler-flags.min.css?1695847769') }}" rel="stylesheet"/>
