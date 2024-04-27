@@ -101,7 +101,7 @@
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" value="{{ $pegawai->email }}">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" value="{{ $pegawai->password }}">
+        <input type="password" id="password" name="password" placeholder="Isi jika akan diganti" @if(isset($pegawai)) value="{{ $pegawai->password }}" @endif>
         <label for="phone_number">Nomor Telepon:</label>
         <input type="text" id="phone_number" name="phone_number" value="{{ $pegawai->phone_number }}">
         <label for="job_title">Jabatan:</label>
@@ -109,7 +109,7 @@
         <label for="address">Alamat:</label>
         <input type="text" id="address" name="address" value="{{ $pegawai->address }}">
         <button type="submit">Simpan Perubahan</button>
-        <a href="/data_karyawan" class="button">Batal</a>
+        <a href="/data-profil" class="button">Batal</a>
     </form>
 </body>
 </html>

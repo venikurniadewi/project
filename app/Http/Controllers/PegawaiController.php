@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class PegawaiController extends Controller
@@ -12,11 +12,12 @@ class PegawaiController extends Controller
     public function data()
     {
         $npage = 5;
-        // $pegawai = Pegawai::all();
-        // return view('pegawai.index', ['pegawai' => $pegawai]);
-         $pegawai = Pegawai::orderBy('created_at', 'desc')->paginate(5);
-        return view ('pegawai.index', compact('pegawai', 'npage'));
+        $pegawai = User::where('role', 'pegawai')
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(4);
+        return view('pegawai.index', compact('pegawai', 'npage'));
     }
+    
     
 
     // Menampilkan halaman tambah data pegawai
@@ -39,7 +40,7 @@ class PegawaiController extends Controller
         ]);
 
         // Simpan data pegawai baru ke dalam database
-        Pegawai::create($validatedData);
+        User::create($validatedData);
 
         // Redirect kembali ke halaman data pegawai setelah data berhasil disimpan
         return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil ditambahkan.');
@@ -48,14 +49,14 @@ class PegawaiController extends Controller
     // Menampilkan detail pegawai
     public function show($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = User::findOrFail($id);
         return view('pegawai.lihat', ['pegawai' => $pegawai]);
     }
 
     // Menampilkan halaman edit data pegawai
     public function edit($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = User::findOrFail($id);
         return view('pegawai.edit', ['pegawai' => $pegawai]);
     }
 
@@ -73,7 +74,7 @@ class PegawaiController extends Controller
         ]);
 
         // Temukan pegawai yang ingin diupdate
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = User::findOrFail($id);
 
         // Update data pegawai
         $pegawai->update($validatedData);
@@ -85,7 +86,7 @@ class PegawaiController extends Controller
     // Menghapus data pegawai
     public function hapus($id)
     {
-        $pegawai = Pegawai::findOrFail($id);
+        $pegawai = User::findOrFail($id);
         $pegawai->delete();
 
         // Set auto-increment ID ke 1 kembali

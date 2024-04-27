@@ -9,14 +9,20 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    protected $table = 'attendances';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'user_id',
+        'id',
         'latitude',
         'longitude',
         'tanggal',
         'masuk',
         'pulang',
+        'created_at'
     ];
-
-    // Anda juga dapat menambahkan relasi atau method lain di sini sesuai kebutuhan
 }

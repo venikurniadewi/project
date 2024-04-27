@@ -45,7 +45,7 @@
                                     <!-- Loop through your data here to display all employees -->
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $key +1 }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->phone_number }}</td>
                                     <td>{{ $item->job_title }}</td>
@@ -62,5 +62,23 @@
     </div>
 </section>
 
+<br></br>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item {{ ($pegawai->onFirstPage()) ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $pegawai->previousPageUrl() }}">
+                <span class="page-text-box">Previous</span>
+            </a>
+        </li>
+        @for ($i = 1; $i <= $pegawai->lastPage(); $i++)
+            <li class="page-item {{ ($pegawai->currentPage() == $i) ? 'active' : '' }}">
+                <a class="page-link" href="{{ $pegawai->url($i) }}">{{ $i }}</a>
+            </li>
+        @endfor
+        <li class="page-item {{ ($pegawai->currentPage() == $pegawai->lastPage()) ? 'disabled' : '' }}">
+            <a class="page-link" href="{{ $pegawai->nextPageUrl() }}">Next</a>
+        </li>
+    </ul>
+</nav>
 
 @endsection

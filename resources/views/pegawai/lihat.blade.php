@@ -68,7 +68,8 @@
 <body>
     <div class="container">
         <h1>Detail Pegawai</h1>
-        <p><strong>No:</strong> {{ $pegawai->id }}</p>
+        
+        <!-- <p><strong>No:</strong> {{ $pegawai->id  }}</p> -->
         <p><strong>Nama:</strong> {{ $pegawai->name }}</p>
         <p><strong>Email:</strong> {{ $pegawai->email }}</p>
         <p><strong>Nomor Telepon:</strong> {{ $pegawai->phone_number }}</p>
@@ -76,7 +77,7 @@
         <p><strong>Alamat:</strong> {{ $pegawai->address }}</p>
 
         <!-- Tombol Kembali -->
-        <form action="/data_karyawan" method="get">
+        <form action="/data-profil" method="get">
             <button type="submit">Kembali</button>
         </form>
     </div>

@@ -3,22 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pegawai;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
-    public function index()
-{
-    $npage = 0;
-    return view('dashboardd', compact('npage'));
-}
+        public function index()
+    {
+        $npage = 0;
+        return view('dashboardd', compact('npage'));
+    }
 
     public function jumlah()
     {
         $npage = 1;
-        $pegawai = Pegawai::all();
+        $pegawai = User::where('role', 'pegawai') // Mengambil hanya pegawai dengan role 'pegawai'
+        ->orderBy('created_at', 'desc')
+        ->paginate(4);
         return view('jumlahkaryawan', compact('pegawai', 'npage'));
     }
+
 
     public function tepatwaktu()
     {
@@ -46,7 +49,7 @@ class DashboardController extends Controller
 
     public function getPegawai()
     {
-        $pegawai = Pegawai::all('name');
+        $pegawai = User::where('role', 'pegawai')->get();
         return response()->json($pegawai);
     }
     

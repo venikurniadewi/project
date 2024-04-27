@@ -19,15 +19,16 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h1 class="card-title">Data Profile Karyawan</h1>
-                            <!-- Search bar on the right side -->
-                            <div class="ml-auto"> <!-- Menggunakan ml-auto untuk membuat elemen berada di sebelah kanan -->
-        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari..." style="padding: 5px; margin-right: 18px;"> <!-- Menambahkan margin-right agar tata letaknya sesuai -->
-    </div>
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h1 class="card-title">Data Profile Karyawan</h1>
+                        <div class="card-header-right">
+                            <div class="ml-auto">
+                                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari..." style="padding: 5px; margin-right: 18px;">
+                            </div>
                         </div>
                     </div>
+                </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="table-list">
@@ -36,7 +37,7 @@
                                         <th class="text-left">No</th>
                                         <th class="text-left">Nama Karyawan</th>
                                         <th class="text-left">Email</th>
-                                        <th class="text-left">Password</th>
+                                        <!-- <th class="text-left">Password</th> -->
                                         <th class="text-left">Nomor Telepon</th>
                                         <th class="text-left">Jabatan</th>
                                         <th class="text-left">Alamat</th>
@@ -46,17 +47,17 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop through your data here to display all employees -->
-                                    @php
+                                    <!-- @php
                                     $currentPage = $pegawai->currentPage() ?? 1; // Get current page
                                     $startNumber = ($currentPage - 1) * 10 + 1; // Calculate starting number
-                                    @endphp
+                                    @endphp -->
 
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $key +1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
-                                        <td>{{ $item->password }}</td>
+                                        <!-- <td>{{ $item->password }}</td> -->
                                         <td>{{ $item->phone_number }}</td>
                                         <td>{{ $item->job_title }}</td>
                                         <td>{{ $item->address }}</td>

@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\IzinController;
+use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\AttendanceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +19,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/izin', [IzinController::class, 'store']);
+Route::get('/profile/{name}', [ProfileController::class, 'getUserProfileByName']);
+
+
+//Protecting Routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function (Request $request) {
+        return auth()->user();
+    });
+
+    // API route for logout user
+    Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
+    Route::get('/get-presensi',  [App\Http\Controllers\API\AttendanceController::class, 'getPresensis']);
+
+    Route::post('/save-presensi', [App\Http\Controllers\API\AttendanceController::class, 'savePresensi']);
 });
