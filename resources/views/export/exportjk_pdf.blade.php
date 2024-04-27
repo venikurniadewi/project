@@ -39,7 +39,7 @@
         <tbody>
         @foreach($pegawais as $key => $item)
          <tr>
-         <td>{{ $key + 1  }}</td>
+         <td>{{ $key + 1 }}</td>
          <td>{{ $item->name }}</td>
          <td>{{ $item->phone_number }}</td>
          <td>{{ $item->job_title }}</td>

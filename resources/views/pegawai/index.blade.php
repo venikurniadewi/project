@@ -53,7 +53,7 @@
 
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                    <td>{{ ($pegawai->currentPage() - 1) * $pegawai->perPage() + $loop->index + 1 }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->password }}</td>

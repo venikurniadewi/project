@@ -29,5 +29,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('pegawais');
+        DB::statement('ALTER TABLE pegawais AUTO_INCREMENT = 1');
     }
 };
