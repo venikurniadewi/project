@@ -4,7 +4,6 @@
     $title = 'Karyawan';
 @endphp
 
-
 @section('content')
 
 <div class="content-header">
@@ -27,7 +26,6 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title">Daftar {{$title}}</h3>
-
                         </div>
                     </div>
                     <div class="card-body">
@@ -36,27 +34,25 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>ID</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
-                                        <th>keterangan</th>
+                                        <th>Jam</th>
+                                        <th>Tanggal</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <!-- Tambahkan tombol untuk opsi, misalnya: edit, hapus, dll -->
-                                            <!-- Contoh tombol edit -->
-                                            <button class="btn btn-sm btn-danger" data-id="" data-nik="" data-nama="" data-email="" data-kecamatan="" data-desa="" data-toggle="modal" data-target="#modalEditAdminDesa">
-                                                <i class="fas fa-edit"></i>
-                                                Terlambat
-                                            </button>
-                                        </td>
-                                    </tr>
+                                @foreach($terlambats as $index => $terlambat)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ optional($terlambat->user)->name }}</td>
+                                    <td>{{ optional($terlambat->user)->job_title }}</td>
+                                    <td>{{ $terlambat->masuk }}</td>
+                                    <td>{{ $terlambat->tanggal }}</td>
+                                    <td><span style="color: white; background-color: red; border: 1px solid red; padding: 2px;">{{ $terlambat->keterangan }}</span></td>
+                                </tr>
+                            @endforeach
+
                                 </tbody>
                             </table>
                         </div>
@@ -66,28 +62,5 @@
         </div>
     </div>
 </section>
-
-<!-- Modal Export Rekap Karyawan -->
-<div class="modal fade" id="modalExportRekap" tabindex="-1" role="dialog" aria-labelledby="modalExportRekapLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalExportRekapLabel">Export Rekap Karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Isi modal untuk pilihan ekspor rekap karyawan di sini -->
-                <p>Pilihan ekspor rekap karyawan</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- Tambahkan tombol untuk mengekspor rekap karyawan di sini -->
-                <button type="button" class="btn btn-primary">Export</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('izins', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('alasan');
             $table->text('keterangan')->nullable();
             $table->timestamps();

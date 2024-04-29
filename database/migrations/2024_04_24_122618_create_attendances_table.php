@@ -16,6 +16,7 @@ class CreateAttendancesTable extends Migration
             $table->date('tanggal');
             $table->time('masuk')->nullable();
             $table->time('pulang')->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
 
             // Foreign key constraint

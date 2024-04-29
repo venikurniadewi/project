@@ -34,27 +34,29 @@
                                 <thead>
                                     <tr>
                                         <th>No.</th>
-                                        <th>ID</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
-                                        <th>Tepat Waktu</th>
+                                        <th>Jam Masuk</th>
+                                        <th>Tanggal</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <!-- Tambahkan tombol untuk opsi, misalnya: edit, hapus, dll -->
-                                            <!-- Contoh tombol edit -->
-                                            <button class="btn btn-sm btn-success" data-id="" data-nik="" data-nama="" data-email="" data-kecamatan="" data-desa="" data-toggle="modal" data-target="#modalEditAdminDesa">
-                                                <i class="fas fa-edit"></i>
-                                                Tepat
-                                            </button>
-                                        </td>
-                                    </tr>
+                                @foreach($tepat_waktu as $index => $presensi)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ optional($presensi->user)->name }}</td>
+                                    <td>{{ optional($presensi->user)->job_title }}</td>
+                                    <td>{{ $presensi->masuk }}</td>
+                                    <td>{{ $presensi->tanggal }}</td>
+                                    <td><span style="color: white; background-color: green; border: 1px solid green; padding: 2px;">
+                                        @if($presensi->keterangan == 'tepat')
+                                            Tepat Waktu
+                                        @endif
+                                    </span>
+                                    </td>
+                                </tr>
+                            @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -64,28 +66,5 @@
         </div>
     </div>
 </section>
-
-<!-- Modal Export Rekap Karyawan -->
-<div class="modal fade" id="modalExportRekap" tabindex="-1" role="dialog" aria-labelledby="modalExportRekapLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalExportRekapLabel">Export Rekap Karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Isi modal untuk pilihan ekspor rekap karyawan di sini -->
-                <p>Pilihan ekspor rekap karyawan</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- Tambahkan tombol untuk mengekspor rekap karyawan di sini -->
-                <button type="button" class="btn btn-primary">Export</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection

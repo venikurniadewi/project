@@ -33,29 +33,24 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="table-list">
                                 <thead>
-                                    <tr>
+                                <tr>
                                         <th>No.</th>
-                                        <th>ID</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
+                                        <th>Alasan</th>
                                         <th>keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($izins as $izin)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <!-- Tambahkan tombol untuk opsi, misalnya: edit, hapus, dll -->
-                                            <!-- Contoh tombol edit -->
-                                            <button class="btn btn-sm btn-success" data-id="" data-nik="" data-nama="" data-email="" data-kecamatan="" data-desa="" data-toggle="modal" data-target="#modalEditAdminDesa">
-                                                <i class="fas fa-edit"></i>
-                                                Sakit
-                                            </button>
-                                        </td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ optional($izin->user)->name }}</td>
+                                        <td>{{ optional($izin->user)->job_title }}</td>
+                                        <td>{{ $izin->alasan }}</td>
+                                        <td>{{ $izin->keterangan }}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

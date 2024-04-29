@@ -13,31 +13,27 @@ date_default_timezone_set("Asia/Jakarta");
 
 class AttendanceController extends Controller
 {
-    public function getPresensis()
+        public function getPresensis()
     {
-        $presensis = Attendance::where('user_id', Auth::user()->id)->get();
-        foreach ($presensis as $item) {
-            if ($item->tanggal == date('Y-m-d')) {
-                $item->is_hari_ini = true;
-            } else {
-                $item->is_hari_ini = false;
-            }
-            $datetime = Carbon::parse($item->tanggal)->locale('id');
-            $masuk = Carbon::parse($item->masuk)->locale('id');
-            $pulang = Carbon::parse($item->pulang)->locale('id');
+        $userId = Auth::user()->id;
+        $presensis = Attendance::where('user_id', $userId)->get();
 
-            $datetime->settings(['formatFunction' => 'translatedFormat']);
-            $masuk->settings(['formatFunction' => 'translatedFormat']);
-            $pulang->settings(['formatFunction' => 'translatedFormat']);
+        foreach ($presensis as $presensi) {
+            $isHariIni = $presensi->tanggal == date('Y-m-d');
+            $presensi->is_hari_ini = $isHariIni;
 
-            $item->tanggal = $datetime->format('l, j F Y');
-            $item->masuk = $masuk->format('H:i');
-            $item->pulang = $pulang->format('H:i');
+            $tanggal = Carbon::parse($presensi->tanggal)->locale('id')->translatedFormat('l, j F Y');
+            $masuk = Carbon::parse($presensi->masuk)->locale('id')->translatedFormat('H:i');
+            $pulang = $presensi->pulang ? Carbon::parse($presensi->pulang)->locale('id')->translatedFormat('H:i') : null;
+
+            $presensi->tanggal = $tanggal;
+            $presensi->masuk = $masuk;
+            $presensi->pulang = $pulang;
         }
 
         return response()->json([
             'success' => true,
-            'message' => 'Sukses menampilkan data',
+            'message' => 'Sukses mendapatkan data presensi',
             'data' => $presensis
         ]);
     }
@@ -45,17 +41,25 @@ class AttendanceController extends Controller
     public function savePresensi(Request $request)
     {
         $keterangan = "";
+        $jamMasuk = date('H:i:s');
+        $waktuTepat = '17:17:00'; // Waktu batas untuk dianggap tepat waktu
+    
+        // Menentukan apakah karyawan hadir tepat waktu atau terlambat
+        $status = ($jamMasuk <= $waktuTepat) ? 'tepat' : 'terlambat';
+    
         $presensi = Attendance::whereDate('tanggal', '=', date('Y-m-d'))
             ->where('user_id', Auth::user()->id)
             ->first();
+    
         if ($presensi == null) {
             $presensi = Attendance::create([
                 'user_id' => Auth::user()->id,
                 'latitude' => $request->input('latitude'),
                 'longitude' => $request->input('longitude'),
                 'tanggal' => date('Y-m-d'),
-                'masuk' => date('H:i:s'),
-                'pulang' => null
+                'masuk' => $jamMasuk,
+                'pulang' => null,
+                'keterangan' => $status // Menyimpan status ke dalam kolom 'keterangan'
             ]);
             return response()->json([
                 'success' => true,
@@ -72,7 +76,7 @@ class AttendanceController extends Controller
                 ]);
             } else {
                 $data = [
-                    'pulang' => date('H:i:s')
+                    'pulang' => $jamMasuk, // Menggunakan jam masuk sebagai jam pulang
                 ];
                 Attendance::whereDate('tanggal', '=', date('Y-m-d'))
                     ->where('user_id', Auth::user()->id)
@@ -81,7 +85,7 @@ class AttendanceController extends Controller
             $presensi = Attendance::whereDate('tanggal', '=', date('Y-m-d'))
                 ->where('user_id', Auth::user()->id)
                 ->first();
-
+    
             return response()->json([
                 'success' => true,
                 'message' => 'Sukses Absen untuk Pulang',
@@ -89,4 +93,50 @@ class AttendanceController extends Controller
             ]);
         }
     }
+    
+    public function tepatwaktu(Request $request)
+{
+    // Ambil data pegawai yang hadir tepat waktu dengan menggunakan kondisi tertentu
+    $tepat_waktu = Attendance::whereNotNull('masuk')
+                            ->where('tanggal', date('Y-m-d'))
+                            ->where('masuk', '<=', '17:17:00') // Ubah operator menjadi <=
+                            ->get();
+
+    // Jika permintaan datang dari API, kembalikan respons JSON
+    if ($request->expectsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Sukses mendapatkan data pegawai yang hadir tepat waktu',
+            'data' => $tepat_waktu
+        ]);
+    }
+
+    // Jika permintaan datang dari web, kembalikan view 'attend.tepatwaktu' dengan data yang diperlukan
+    $npage = 2; // Contoh nilai untuk npage
+    return view('attend.tepatwaktu', compact('tepat_waktu', 'npage'));
+}
+
+public function terlambat(Request $request)
+{
+    // Ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu
+    $terlambats = Attendance::whereNotNull('masuk')
+                            ->where('tanggal', date('Y-m-d'))
+                            ->where('masuk', '>', '17:10:00') // Ubah operator menjadi >
+                            ->get();
+
+    // Jika permintaan datang dari API, kembalikan respons JSON
+    if ($request->expectsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Sukses mendapatkan data pegawai yang terlambat',
+            'data' => $terlambats
+        ]);
+    }
+
+    // Jika permintaan datang dari web, kembalikan view 'attend.terlambat' dengan data yang diperlukan
+    $npage = 3; // Contoh nilai untuk npage
+    return view('attend.terlambat', compact('terlambats', 'npage'));
+}
+
+
 }

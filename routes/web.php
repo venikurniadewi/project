@@ -42,7 +42,7 @@ Route::get('/registrasi', [RegisterController::class, 'index'])->name('register.
 //route beranda
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/data_karyawan', [DashboardController::class, 'jumlah']);
-Route::get('/tepat_waktu', [DashboardController::class, 'tepatwaktu']);
+Route::get('/tepat_waktu', [AttendanceController::class, 'tepatwaktu']);
 Route::get('/terlambat', [DashboardController::class, 'terlambat']);
 Route::get('/izin', [DashboardController::class, 'izin']);
 Route::get('/rekap_absen', [DashboardController::class, 'rekap']);

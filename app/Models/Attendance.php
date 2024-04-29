@@ -18,11 +18,18 @@ class Attendance extends Model
      */
     protected $fillable = [
         'id',
+        'user_id',
         'latitude',
         'longitude',
         'tanggal',
         'masuk',
         'pulang',
+        'keterangan',
         'created_at'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

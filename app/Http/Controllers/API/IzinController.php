@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Izin;
+use Illuminate\Support\Facades\Auth; // Import facade Auth
 
 class IzinController extends Controller
 {
@@ -18,10 +19,15 @@ class IzinController extends Controller
                 'keterangan' => 'required|string', // Menjadikan keterangan wajib diisi
             ]);
 
+            // Mengambil data user yang sedang login
+            $user = Auth::user();
+
             // Simpan data izin ke dalam database
             $izin = new Izin();
             $izin->alasan = $request->alasan; // Mengubah 'reason' menjadi 'alasan'
             $izin->keterangan = $request->keterangan; // Mengubah 'additional_info' menjadi 'keterangan'
+            $izin->nama = $user->name; // Mengambil nama dari model User
+            $izin->jabatan = $user->job_title; // Mengambil jabatan dari model User
             $izin->save();
 
             // Beri respons bahwa izin berhasil disimpan
