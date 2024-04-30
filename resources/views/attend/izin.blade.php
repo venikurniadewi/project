@@ -37,6 +37,7 @@
                                         <th>No.</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
+                                        <th>Tanggal</th>
                                         <th>Alasan</th>
                                         <th>keterangan</th>
                                     </tr>

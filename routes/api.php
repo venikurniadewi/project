@@ -24,7 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/izin', [IzinController::class, 'store']);
-Route::get('/profile/{name}', [ProfileController::class, 'getUserProfileByName']);
+
+Route::get('profile/{name}', [ProfileController::class, 'getUserProfileByName']);
+Route::put('profile/{name}', [ProfileController::class, 'updateUserProfile']);
 
 
 //Protecting Routes
@@ -36,6 +38,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // API route for logout user
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
     Route::get('/get-presensi',  [App\Http\Controllers\API\AttendanceController::class, 'getPresensis']);
-
     Route::post('/save-presensi', [App\Http\Controllers\API\AttendanceController::class, 'savePresensi']);
+
+    
 });

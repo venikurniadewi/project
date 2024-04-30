@@ -55,7 +55,7 @@ class DashboardController extends Controller
     
         // Misalnya, ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu
         $terlambats = Attendance::whereNotNull('masuk')
-                                ->where('tanggal', date('Y-m-d'))
+                                ->whereDate('tanggal', '<=', date('Y-m-d'))
                                 ->where('masuk', '>', '17:17:00')
                                 ->get();
     

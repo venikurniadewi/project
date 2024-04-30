@@ -26,10 +26,30 @@ class ProfileController extends Controller
             'phone_number' => $user->phone_number,
             'job_title' => $user->job_title,
             'address' => $user->address,
+            'password'=> $user->password,
             // Anda bisa menambahkan kolom lain yang Anda perlukan
         ];
 
         // Mengembalikan data sebagai respons JSON
         return response()->json([$userData], 200);
+    }
+
+    public function updateUserProfile(Request $request, $name)
+    {
+        // Ambil profil pengguna berdasarkan nama
+        $user = User::where('name', $name)->first();
+
+        // Periksa apakah pengguna ditemukan
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        // Isi model dengan data yang diterima dari permintaan
+        $user->fill($request->only(['name', 'email', 'phone_number', 'job_title', 'address', 'password']));
+
+        // Simpan perubahan ke database
+        $user->save();
+
+        return response()->json(['message' => 'Profile updated successfully']);
     }
 }

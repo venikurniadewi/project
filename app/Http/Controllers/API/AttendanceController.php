@@ -96,10 +96,10 @@ class AttendanceController extends Controller
     
     public function tepatwaktu(Request $request)
 {
-    // Ambil data pegawai yang hadir tepat waktu dengan menggunakan kondisi tertentu
+    // Ambil data pegawai yang hadir tepat waktu dari hari-hari sebelumnya dan hari ini
     $tepat_waktu = Attendance::whereNotNull('masuk')
-                            ->where('tanggal', date('Y-m-d'))
-                            ->where('masuk', '<=', '17:17:00') // Ubah operator menjadi <=
+                            ->whereDate('tanggal', '<=', date('Y-m-d')) // Tanggal kurang dari atau sama dengan hari ini
+                            ->where('masuk', '<=', '17:17:00') // Jam masuk kurang dari atau sama dengan waktu batas tepat waktu
                             ->get();
 
     // Jika permintaan datang dari API, kembalikan respons JSON
