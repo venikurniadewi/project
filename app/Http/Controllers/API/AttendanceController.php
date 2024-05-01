@@ -42,7 +42,7 @@ class AttendanceController extends Controller
     {
         $keterangan = "";
         $jamMasuk = date('H:i:s');
-        $waktuTepat = '17:17:00'; // Waktu batas untuk dianggap tepat waktu
+        $waktuTepat = '07:15:00'; // Waktu batas untuk dianggap tepat waktu
     
         // Menentukan apakah karyawan hadir tepat waktu atau terlambat
         $status = ($jamMasuk <= $waktuTepat) ? 'tepat' : 'terlambat';
@@ -98,8 +98,8 @@ class AttendanceController extends Controller
 {
     // Ambil data pegawai yang hadir tepat waktu dari hari-hari sebelumnya dan hari ini
     $tepat_waktu = Attendance::whereNotNull('masuk')
-                            ->whereDate('tanggal', '<=', date('Y-m-d')) // Tanggal kurang dari atau sama dengan hari ini
-                            ->where('masuk', '<=', '17:17:00') // Jam masuk kurang dari atau sama dengan waktu batas tepat waktu
+                            ->whereDate('tanggal', '=', date('Y-m-d')) // Tanggal kurang dari atau sama dengan hari ini
+                            ->where('masuk', '<=', '07:00:00') // Jam masuk kurang dari atau sama dengan waktu batas tepat waktu
                             ->get();
 
     // Jika permintaan datang dari API, kembalikan respons JSON

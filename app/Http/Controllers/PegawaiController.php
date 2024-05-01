@@ -32,7 +32,7 @@ class PegawaiController extends Controller
         // Validasi data yang dikirimkan dari formulir
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:pegawais',
+            'email' => 'required|unique:users',
             'password' => 'required',
             'phone_number' => 'required',
             'job_title' => 'required',
@@ -66,7 +66,7 @@ class PegawaiController extends Controller
         // Validasi data yang dikirimkan dari formulir
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:pegawais,email,'.$id,
+            'email' => 'required|unique:users,email,'.$id,
             'password' => 'required',
             'phone_number' => 'required',
             'job_title' => 'required',

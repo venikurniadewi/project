@@ -34,7 +34,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/login', [LoginController::class, 'login']); //route post untuk login
-Route::get('/loginback', [LoginController::class, 'index']); 
+Route::get('/login', [LoginController::class, 'index']); 
 Route::get('/logout', [LogoutController::class, 'logout']);
 Route::post('/registrasi', [RegisterController::class, 'register'])->name('register.coba');
 Route::get('/registrasi', [RegisterController::class, 'index'])->name('register.halaman');
@@ -42,10 +42,11 @@ Route::get('/registrasi', [RegisterController::class, 'index'])->name('register.
 //route beranda
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/data_karyawan', [DashboardController::class, 'jumlah']);
-Route::get('/tepat_waktu', [AttendanceController::class, 'tepatwaktu']);
+Route::get('/tepat_waktu', [DashboardController::class, 'tepatwaktu']);
 Route::get('/terlambat', [DashboardController::class, 'terlambat']);
 Route::get('/izin', [DashboardController::class, 'izin']);
 Route::get('/rekap_absen', [DashboardController::class, 'rekap']);
+Route::get('/laporan', [DashboardController::class, 'laporan'])->name('laporan-karyawan');
 // Route::get('/data_karyawan', [PegawaiController::class, 'data']);
 Route::get('/settings', [DashboardController::class, 'setting']);
 Route::get('/data-pegawai', [DashboardController::class, 'getPegawai']);

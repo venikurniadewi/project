@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('izins', function (Blueprint $table) {
+        Schema::create('laporans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Menambahkan kolom untuk user_id
-            $table->string('alasan');
-            $table->text('keterangan')->nullable();
-            $table->date('tanggal')->useCurrent(); // Tambahkan kolom untuk tanggal izin
+            $table->foreignId('user_id');
+            $table->foreignId('id_attendance');
+            $table->foreignId('id_izin');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('izins');
+        Schema::dropIfExists('laporans');
     }
 };

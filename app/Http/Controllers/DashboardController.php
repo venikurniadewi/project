@@ -30,7 +30,7 @@ class DashboardController extends Controller
     // Ambil data pegawai yang hadir tepat waktu dengan menggunakan kondisi tertentu
     $tepat_waktu = Attendance::whereNotNull('masuk')
                             ->where('tanggal', date('Y-m-d'))
-                            ->where('masuk', '<=', '08:00:00') // Ubah operator menjadi <=
+                            ->where('masuk', '<=', '07:15:00') // Ubah operator menjadi <=
                             ->get();
 
     // Jika permintaan datang dari API, kembalikan respons JSON
@@ -55,8 +55,8 @@ class DashboardController extends Controller
     
         // Misalnya, ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu
         $terlambats = Attendance::whereNotNull('masuk')
-                                ->whereDate('tanggal', '<=', date('Y-m-d'))
-                                ->where('masuk', '>', '17:17:00')
+                                ->whereDate('tanggal', '=', date('Y-m-d'))
+                                ->where('masuk', '>', '07:15:00')
                                 ->get();
     
         // Mengirim variabel $terlambats dan $npage ke view 'attend.terlambat'
@@ -67,8 +67,13 @@ class DashboardController extends Controller
     public function izin()
     {
         $npage = 4;
-        $izins = Izin::all();
-        return view('attend.izin', compact('izins','npage'));
+        // $izins = Izin::all();
+        $izins = Izin::select('izins.*', 'users.name as name', 'users.job_title as job_title')
+        ->join('users', 'users.id', '=', 'izins.user_id')
+        ->get();
+        return view('attend.izin', [
+            'izins' => $izins
+        ], compact('npage'));
     }
     public function rekap()
     {
@@ -76,6 +81,34 @@ class DashboardController extends Controller
         return view('rekapabsen', compact('npage'));
     }
     
+    public function laporan()
+    {
+        $npage = 7;
+        
+    
+        // Ambil data laporan berdasarkan filter yang diberikan
+        $laporan = User::with(['attendance', 'izin'])
+                    // ->whereHas('attendance', function ($query) use ($request) {
+                    //     if ($request->has('status_presensi')) {
+                    //         $query->where('status', $request->status_presensi);
+                    //     }
+                    //     if ($request->has('tanggal_awal') && $request->has('tanggal_akhir')) {
+                    //         $query->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir]);
+                    //     }
+                    // })
+                    // ->whereHas('izin', function ($query) use ($request) {
+                    //     if ($request->has('jenis_izin')) {
+                    //         $query->where('jenis_izin', $request->jenis_izin);
+                    //     }
+                    //     if ($request->has('tanggal_awal') && $request->has('tanggal_akhir')) {
+                    //         $query->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir]);
+                    //     }
+                    // })
+                    ->get();
+
+                    return view('laporan', ['laporan' => $laporan, 'npage' => $npage]);
+                
+    }
 
     public function getPegawai()
     {

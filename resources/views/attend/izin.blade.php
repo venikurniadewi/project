@@ -46,8 +46,9 @@
                                 @foreach($izins as $izin)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ optional($izin->user)->name }}</td>
-                                        <td>{{ optional($izin->user)->job_title }}</td>
+                                        <td>{{ $izin->name }}</td>
+                                        <td>{{ $izin->job_title }}</td>
+                                        <td>{{ $izin->tanggal }}</td>
                                         <td>{{ $izin->alasan }}</td>
                                         <td>{{ $izin->keterangan }}</td>
                                     </tr>

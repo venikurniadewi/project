@@ -42,21 +42,24 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tepat_waktu as $index => $data)
-            @if($data->keterangan == 'tepat')
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ optional($data->user)->name }}</td>
-                    <td>{{ optional($data->user)->job_title }}</td>
-                    <td>{{ $data->masuk }}</td>
-                    <td>{{ $data->tanggal }}</td>
-                    <td><span style="color: white; background-color: green; border: 1px solid green; padding: 2px;">
-                        Tepat Waktu
-                    </span>
-                    </td>
-                </tr>
-            @endif
-        @endforeach
+    @php $counter = 1; @endphp <!-- Initialize counter before the loop -->
+@foreach($tepat_waktu as $data)
+    @if($data->keterangan == 'tepat')
+        <tr>
+            <td>{{ $counter++ }}</td> <!-- Use counter and increment it -->
+            <td>{{ optional($data->user)->name }}</td>
+            <td>{{ optional($data->user)->job_title }}</td>
+            <td>{{ $data->masuk }}</td>
+            <td>{{ $data->tanggal }}</td>
+            <td><span style="color: white; background-color: green; border: 1px solid green; padding: 2px;">
+                Tepat Waktu
+            </span>
+            </td>
+        </tr>
+    @endif
+@endforeach
+
+
     </tbody>
 </table>
           </div>

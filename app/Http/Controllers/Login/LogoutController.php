@@ -16,6 +16,6 @@ class LogoutController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(''); //redirect ke url "/"
+        return redirect('/login'); //redirect ke url "/"
     }
 }
