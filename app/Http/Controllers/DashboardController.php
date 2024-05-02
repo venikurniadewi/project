@@ -49,16 +49,18 @@ class DashboardController extends Controller
 
 
 
+
     public function terlambat()
     {
-        $npage = 3;
+        $npage = 4;
     
         // Misalnya, ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu
         $terlambats = Attendance::whereNotNull('masuk')
                                 ->whereDate('tanggal', '=', date('Y-m-d'))
                                 ->where('masuk', '>', '07:15:00')
                                 ->get();
-    
+
+        
         // Mengirim variabel $terlambats dan $npage ke view 'attend.terlambat'
         return view('attend.terlambat', compact('terlambats', 'npage'));
     }
@@ -66,7 +68,7 @@ class DashboardController extends Controller
 
     public function izin()
     {
-        $npage = 4;
+        $npage = 5;
         // $izins = Izin::all();
         $izins = Izin::select('izins.*', 'users.name as name', 'users.job_title as job_title')
         ->join('users', 'users.id', '=', 'izins.user_id')
@@ -75,15 +77,17 @@ class DashboardController extends Controller
             'izins' => $izins
         ], compact('npage'));
     }
+
+
     public function rekap()
     {
-        $npage = 6;
+        $npage = 7;
         return view('rekapabsen', compact('npage'));
     }
     
     public function laporan()
     {
-        $npage = 7;
+        $npage = 8;
         
     
         // Ambil data laporan berdasarkan filter yang diberikan

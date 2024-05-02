@@ -116,6 +116,29 @@ class AttendanceController extends Controller
     return view('attend.tepatwaktu', compact('tepat_waktu', 'npage'));
 }
 
+public function jampulang(Request $request)
+{
+    // Ambil data pegawai yang pulang tepat waktu dari hari-hari sebelumnya dan hari ini
+    $tepat_pulang = Attendance::whereNotNull('pulang')
+                            ->whereDate('tanggal', '=', date('Y-m-d')) // Tanggal kurang dari atau sama dengan hari ini
+                            ->where('pulang', '<=', '17:00:00') // Jam pulang kurang dari atau sama dengan waktu batas tepat pulang
+                            ->get();
+
+    // Jika permintaan datang dari API, kembalikan respons JSON
+    if ($request->expectsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Sukses mendapatkan data pegawai yang pulang tepat waktu',
+            'data' => $tepat_pulang
+        ]);
+    }
+
+    // Jika permintaan datang dari web, kembalikan view 'attend.jampulang' dengan data yang diperlukan
+    $npage = 3; // Contoh nilai untuk npage
+    return view('attend.jampulang', compact('tepat_pulang', 'npage'));
+}
+
+
 public function terlambat(Request $request)
 {
     // Ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu

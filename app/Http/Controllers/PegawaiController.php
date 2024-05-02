@@ -11,7 +11,7 @@ class PegawaiController extends Controller
     // Menampilkan semua data pegawai
     public function data()
     {
-        $npage = 5;
+        $npage = 6;
         $pegawai = User::where('role', 'pegawai')
                     ->orderBy('created_at', 'desc')
                     ->paginate(4);

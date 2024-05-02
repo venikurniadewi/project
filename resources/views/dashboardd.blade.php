@@ -73,23 +73,25 @@
         </div>
 
         <div class="col-xl-3 col-md-6">
-            <div class="card mini-stat bg-primary text-white">
-                <div class="card-body">
-                    <div class="mb-4">
-                        <div class="float-left mini-stat-img mr-4">
-                            <i class="ti-alert" style="font-size: 20px"></i>
-                        </div>
-                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Terlambat Hari ini</h5>
-                        <h4 class="font-500">0<i class="text-success ml-2"></i></h4>
-                    </div>
-                    <div class="pt-2">
-                        <div class="float-right">
-                            <a href="{{ url('/terlambat') }}" class="text-white-50">Lihat Detail <i class="mdi mdi-arrow-right h5"></i></a>
-                        </div>
-                    </div>
+    <div class="card mini-stat bg-primary text-white">
+        <div class="card-body">
+            <div class="mb-4">
+                <div class="float-left mini-stat-img mr-4">
+                    <i class="ti-alert" style="font-size: 20px"></i>
+                </div>
+                <h5 class="font-16 text-uppercase mt-0 text-white-50">Terlambat Hari ini</h5>
+                <h4 class="font-500">{{ count($terlambats ?? []) }}<i class="text-success ml-2"></i></h4>
+            </div>
+            <div class="pt-2">
+                <div class="float-right">
+                    <a href="{{ route('terlambat') }}" class="text-white-50">Lihat Detail <i class="mdi mdi-arrow-right h5"></i></a>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+
     </div>
 </div>
 @endsection

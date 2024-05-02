@@ -31,19 +31,21 @@ Route::get('/homelogin', function () {
 });
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index']);
 
 Route::post('/login', [LoginController::class, 'login']); //route post untuk login
-Route::get('/login', [LoginController::class, 'index']); 
+Route::get('/login', [LoginController::class, 'index'])->name('login'); 
 Route::get('/logout', [LogoutController::class, 'logout']);
 Route::post('/registrasi', [RegisterController::class, 'register'])->name('register.coba');
 Route::get('/registrasi', [RegisterController::class, 'index'])->name('register.halaman');
 
+Route::middleware('auth')->group(function () {
 //route beranda
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/data_karyawan', [DashboardController::class, 'jumlah']);
 Route::get('/tepat_waktu', [DashboardController::class, 'tepatwaktu']);
-Route::get('/terlambat', [DashboardController::class, 'terlambat']);
+Route::get('/jampulang', [AttendanceController::class, 'jampulang']);
+Route::get('/terlambat', [DashboardController::class, 'terlambat'])->name('terlambat');
 Route::get('/izin', [DashboardController::class, 'izin']);
 Route::get('/rekap_absen', [DashboardController::class, 'rekap']);
 Route::get('/laporan', [DashboardController::class, 'laporan'])->name('laporan-karyawan');
@@ -74,7 +76,7 @@ Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus'])->name('pegaw
 
 
 Route::post('save-attendance', [AttendanceController::class, 'saveAttendance']);
-
+});
 
 
 

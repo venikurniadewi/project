@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/logout', [App\Http\Controllers\API\AuthController::class, 'logout']);
     Route::get('/get-presensi',  [App\Http\Controllers\API\AttendanceController::class, 'getPresensis']);
     Route::post('/save-presensi', [App\Http\Controllers\API\AttendanceController::class, 'savePresensi']);
+    Route::post('/jampulang', [App\Http\Controllers\API\AttendanceController::class, 'jampulang'])->name('jampulang');
 
     
 });

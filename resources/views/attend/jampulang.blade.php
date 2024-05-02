@@ -36,24 +36,28 @@
                                         <th>No.</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
-                                        <th>Jam</th>
+                                        <th>Jam Pulang</th>
                                         <th>Tanggal</th>
                                         <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($terlambats as $index => $terlambat)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ optional($terlambat->user)->name }}</td>
-                                    <td>{{ optional($terlambat->user)->job_title }}</td>
-                                    <td>{{ $terlambat->masuk }}</td>
-                                    <td>{{ $terlambat->tanggal }}</td>
-                                    <td><span style="color: white; background-color: red; border: 1px solid red; padding: 2px;">{{ $terlambat->keterangan }}</span></td>
-                                </tr>
-                                
-                            @endforeach
-
+                                    @foreach($tepat_pulang as $key => $employee)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $employee->nama }}</td>
+                                            <td>{{ $employee->jabatan }}</td>
+                                            <td>{{ $employee->pulang }}</td> <!-- Ini adalah bagian untuk menampilkan jam pulang -->
+                                            <td>{{ $employee->tanggal }}</td> <!-- Jika Anda memiliki atribut tanggal pada model karyawan -->
+                                            <td>
+                                                <!-- Tambahkan tombol untuk opsi, misalnya: edit, hapus, dll -->
+                                                <!-- Contoh tombol edit -->
+                                                <td><span style="color: white; background-color: red; border: 1px solid red; padding: 2px;">
+                                                    Pulang
+                                                </span>
+                                                </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
