@@ -19,17 +19,17 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h1 class="card-title">Data Profile Karyawan</h1> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                        <div class="card-header-right">
-                            <div class="ml-auto">
-                                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari..." style="padding: 5px; margin-right: 18px;">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h1 class="card-title">Data Profile Karyawan</h1> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            <div class="card-header-right">
+                                <div class="ml-auto">
+                                    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari..." style="padding: 5px; margin-right: 18px;">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="table-list">
@@ -42,7 +42,7 @@
                                         <th class="text-left">Nomor Telepon</th>
                                         <th class="text-left">Jabatan</th>
                                         <th class="text-left">Alamat</th>
-                                        <th class="text-right">Aksi</th> 
+                                        <th class="text-right">Aksi</th>
                                         <!-- Tambahkan class "text-right" untuk menggeser ke kanan -->
                                     </tr>
                                 </thead>
@@ -52,26 +52,31 @@
                                     $currentPage = $pegawai->currentPage() ?? 1; // Get current page
                                     $startNumber = ($currentPage - 1) * 10 + 1; // Calculate starting number
                                     @endphp -->
+                                    @php
+    $currentPage = $pegawai->currentPage() ?? 1; // Get current page
+    $perPage = $pegawai->perPage(); // Get number of items per page
+    $startNumber = ($currentPage - 1) * $perPage + 1; // Calculate starting number
+@endphp
 
                                     @foreach($pegawai as $key => $item)
-                                    <tr>
-                                        <td>{{ $key +1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <!-- <td>{{ $item->password }}</td> -->
-                                        <td>{{ $item->phone_number }}</td>
-                                        <td>{{ $item->job_title }}</td>
-                                        <td>{{ $item->address }}</td>
-                                        <td class="action-buttons text-right"> <!-- Tambahkan class "text-right" untuk menggeser ke kanan -->
-                                            <a href="{{ route('pegawai.show', ['id' => $item->id]) }}" class="btn-green"><i class="fas fa-eye"></i> Lihat</a>
-                                            <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}" class="btn-orange"><i class="fas fa-edit"></i> Edit</a>
-                                            <form action="{{ route('pegawai.hapus', ['id' => $item->id]) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn-red"><i class="fas fa-trash-alt"></i> Hapus</button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td>{{ $startNumber + $key }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <!-- <td>{{ $item->password }}</td> -->
+                                            <td>{{ $item->phone_number }}</td>
+                                            <td>{{ $item->job_title }}</td>
+                                            <td>{{ $item->address }}</td>
+                                            <td class="action-buttons text-right"> <!-- Tambahkan class "text-right" untuk menggeser ke kanan -->
+                                                <a href="{{ route('pegawai.show', ['id' => $item->id]) }}" class="btn-green"><i class="fas fa-eye"></i> Lihat</a>
+                                                <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}" class="btn-orange"><i class="fas fa-edit"></i> Edit</a>
+                                                <form action="{{ route('pegawai.hapus', ['id' => $item->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn-red"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -102,8 +107,7 @@
         </li>
     </ul>
 </nav>
-
-        <!-- End Pagination -->
+<!-- End Pagination -->
 
 <!-- JavaScript untuk meng-handle pencarian -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
