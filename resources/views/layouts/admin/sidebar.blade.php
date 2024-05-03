@@ -101,6 +101,7 @@
     <line x1="21" y1="3" x2="21" y2="7" />
     <line x1="3" y1="21" x2="7" y2="21" />
 </svg>
+
         </span>
         <span class="nav-link-title">
             Laporan

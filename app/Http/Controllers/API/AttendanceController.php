@@ -42,7 +42,7 @@ class AttendanceController extends Controller
     {
         $keterangan = "";
         $jamMasuk = date('H:i:s');
-        $waktuTepat = '07:15:00'; // Waktu batas untuk dianggap tepat waktu
+        $waktuTepat = '09:00:00'; // Waktu batas untuk dianggap tepat waktu
     
         // Menentukan apakah karyawan hadir tepat waktu atau terlambat
         $status = ($jamMasuk <= $waktuTepat) ? 'tepat' : 'terlambat';

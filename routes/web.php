@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\API\AttendanceController;
+use App\Http\Controllers\RekapController;
 
 
 
@@ -73,7 +74,12 @@ Route::put('/pegawai/{id}/update', [PegawaiController::class, 'update'])->name('
 Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus'])->name('pegawai.hapus');
 
 
-Route::post('save-attendance', [AttendanceController::class, 'saveAttendance']);
+Route::get('/lihat-rekap/{userId}', [RekapController::class, 'lihatRekap'])->name('lihat-rekap');
+Route::get('/generate-pdf/{bulan}/{tahun}', [ExportController::class, 'exportlap'])->name('generate-pdf');
+Route::get('/cetak-laporan/{bulan}/{tahun}', [ExportController::class, 'cetaklap'])->name('cetak-laporan');
+
+Route::get('/cetak-pegawai/{userId}/{bulan}/{tahun}', [ExportController::class, 'cetakPegawai'])->name('cetak-pegawai');
+Route::get('/laporan-pegawai-pdf/{userId}/{bulan}/{tahun}', [ExportController::class, 'pegawaiPDF'])->name('pegawai-pdf');
 
 
 
