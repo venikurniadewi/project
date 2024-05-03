@@ -6,7 +6,7 @@
     <ul>
         <a type=button href="{{ route('exportjk') }}" class="btn btn-primary" type="button" style="padding: 5px 10px; color: #fff; margin-right: 18px; margin-top: 10px;" onclick="togglePopup()">
             <i class="fas fa-plus"></i> &nbsp;Export Rekap Karyawan
-</a>
+        </a>
     </ul>
 </div>
 
@@ -33,23 +33,29 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="table-list">
                                 <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Karyawan</th>
-                                    <th>Nomor Telepon</th>
-                                    <th>Jabatan</th>
-                                    <th>Alamat</th>
-                                </tr>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Karyawan</th>
+                                        <th>Nomor Telepon</th>
+                                        <th>Jabatan</th>
+                                        <th>Alamat</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <!-- Loop through your data here to display all employees -->
+                                    @php
+                                    $currentPage = $pegawai->currentPage() ?? 1; // Get current page
+                                    $perPage = $pegawai->perPage(); // Get number of items per page
+                                    $startNumber = ($currentPage - 1) * $perPage + 1; // Calculate starting number
+                                    @endphp
+
                                     @foreach($pegawai as $key => $item)
                                     <tr>
-                                    <td>{{ $key +1 }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->phone_number }}</td>
-                                    <td>{{ $item->job_title }}</td>
-                                    <td>{{ $item->address }}</td>
+                                        <td>{{ $startNumber + $key }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->phone_number }}</td>
+                                        <td>{{ $item->job_title }}</td>
+                                        <td>{{ $item->address }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

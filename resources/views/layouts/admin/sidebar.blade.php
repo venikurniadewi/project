@@ -54,10 +54,13 @@
                 <a href="{{ url('/tepat_waktu') }}" class="dropdown-item nav-link{{ ($npage == 2) ? ' active' : '' }}" style="{{ ($npage == 2) ? 'background-color: #007bff; color: #fff;' : '' }}">
                     Tepat Waktu
                 </a>
-                <a href="{{ url('/terlambat') }}" class="dropdown-item nav-link{{ ($npage == 3) ? ' active' : '' }}" style="{{ ($npage == 3) ? 'background-color: #007bff; color: #fff;' : '' }}">
+                <a href="{{ url('/jampulang') }}" class="dropdown-item nav-link{{ ($npage == 3) ? ' active' : '' }}" style="{{ ($npage == 3) ? 'background-color: #007bff; color: #fff;' : '' }}">
+                    Jam Pulang
+                </a>    
+                <a href="{{ url('/terlambat') }}" class="dropdown-item nav-link{{ ($npage == 4) ? ' active' : '' }}" style="{{ ($npage == 4) ? 'background-color: #007bff; color: #fff;' : '' }}">
                     Terlambat
                 </a>
-                <a href="{{ url('/izin') }}" class="dropdown-item nav-link{{ ($npage == 4) ? ' active' : '' }}" style="{{ ($npage == 4) ? 'background-color: #007bff; color: #fff;' : '' }}">
+                <a href="{{ url('/izin') }}" class="dropdown-item nav-link{{ ($npage == 5) ? ' active' : '' }}" style="{{ ($npage == 5) ? 'background-color: #007bff; color: #fff;' : '' }}">
                     Izin
                 </a>
             </div>
@@ -67,7 +70,7 @@
 
 
                     <li class="nav-item">
-    <a href="{{ url('/data-profil') }}" class="nav-link{{ ($npage == 5) ? ' active' : '' }}" onclick="highlightFeature(this)">
+    <a href="{{ url('/data-profil') }}" class="nav-link{{ ($npage == 6) ? ' active' : '' }}" onclick="highlightFeature(this)">
         <span class="nav-link-icon d-md-none d-lg-inline-block">
             <!-- Download SVG icon from https://icons8.com/icons/set/worker -->
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-databricks"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l9 5l9 -5v-3l-9 5l-9 -5v-3l9 5l9 -5v-3l-9 5l-9 -5l9 -5l5.418 3.01" /></svg>
@@ -80,7 +83,7 @@
 
 
                     <li class="nav-item">
-                    <a class="nav-link{{ ($npage == 6) ? ' active' : '' }}" href="{{ url('/rekap_absen') }}" onclick="highlightFeature(this)">
+                    <a class="nav-link{{ ($npage == 7) ? ' active' : '' }}" href="{{ url('/rekap_absen') }}" onclick="highlightFeature(this)">
     <span class="nav-link-icon d-md-none d-lg-inline-block">
         <!-- Download SVG icon from http://tabler-icons.io/i/home -->
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" /><path d="M18 14v4h4" /><path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" /><path d="M8 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M8 11h4" /><path d="M8 15h3" /></svg>
@@ -91,7 +94,7 @@
 </a>
 
 <li class="nav-item">
-    <a href="{{ url('/laporan') }}" class="nav-link{{ ($npage == 7) ? ' active' : '' }}" onclick="highlightFeature(this)">
+    <a href="{{ url('/laporan') }}" class="nav-link{{ ($npage == 9) ? ' active' : '' }}" onclick="highlightFeature(this)">
         <span class="nav-link-icon d-md-none d-lg-inline-block">
             <!-- Download SVG icon from https://icons8.com/icons/set/worker -->
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-report">
