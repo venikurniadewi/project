@@ -94,27 +94,27 @@ class AttendanceController extends Controller
         }
     }
     
-    public function tepatwaktu(Request $request)
-{
-    // Ambil data pegawai yang hadir tepat waktu dari hari-hari sebelumnya dan hari ini
-    $tepat_waktu = Attendance::whereNotNull('masuk')
-                            ->whereDate('tanggal', '=', date('Y-m-d')) // Tanggal kurang dari atau sama dengan hari ini
-                            ->where('masuk', '<=', '07:00:00') // Jam masuk kurang dari atau sama dengan waktu batas tepat waktu
-                            ->get();
+//     public function tepatwaktu(Request $request)
+// {
+//     // Ambil data pegawai yang hadir tepat waktu dari hari-hari sebelumnya dan hari ini
+//     $tepat_waktu = Attendance::whereNotNull('masuk')
+//                             ->whereDate('tanggal', '=', date('Y-m-d')) // Tanggal kurang dari atau sama dengan hari ini
+//                             ->where('masuk', '<=', '07:00:00') // Jam masuk kurang dari atau sama dengan waktu batas tepat waktu
+//                             ->get();
 
-    // Jika permintaan datang dari API, kembalikan respons JSON
-    if ($request->expectsJson()) {
-        return response()->json([
-            'success' => true,
-            'message' => 'Sukses mendapatkan data pegawai yang hadir tepat waktu',
-            'data' => $tepat_waktu
-        ]);
-    }
+//     // Jika permintaan datang dari API, kembalikan respons JSON
+//     if ($request->expectsJson()) {
+//         return response()->json([
+//             'success' => true,
+//             'message' => 'Sukses mendapatkan data pegawai yang hadir tepat waktu',
+//             'data' => $tepat_waktu
+//         ]);
+//     }
 
-    // Jika permintaan datang dari web, kembalikan view 'attend.tepatwaktu' dengan data yang diperlukan
-    $npage = 2; // Contoh nilai untuk npage
-    return view('attend.tepatwaktu', compact('tepat_waktu', 'npage'));
-}
+//     // Jika permintaan datang dari web, kembalikan view 'attend.tepatwaktu' dengan data yang diperlukan
+//     $npage = 2; // Contoh nilai untuk npage
+//     return view('attend.tepatwaktu', compact('tepat_waktu', 'npage'));
+// }
 
 public function jampulang(Request $request)
 {
@@ -139,27 +139,27 @@ public function jampulang(Request $request)
 }
 
 
-public function terlambat(Request $request)
-{
-    // Ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu
-    $terlambats = Attendance::whereNotNull('masuk')
-                            ->where('tanggal', date('Y-m-d'))
-                            ->where('masuk', '>', '17:10:00') // Ubah operator menjadi >
-                            ->get();
+// public function terlambat(Request $request)
+// {
+//     // Ambil data pegawai yang terlambat dengan menggunakan kondisi tertentu
+//     $terlambats = Attendance::whereNotNull('masuk')
+//                             ->where('tanggal', date('Y-m-d'))
+//                             ->where('masuk', '>', '17:10:00') // Ubah operator menjadi >
+//                             ->get();
 
-    // Jika permintaan datang dari API, kembalikan respons JSON
-    if ($request->expectsJson()) {
-        return response()->json([
-            'success' => true,
-            'message' => 'Sukses mendapatkan data pegawai yang terlambat',
-            'data' => $terlambats
-        ]);
-    }
+//     // Jika permintaan datang dari API, kembalikan respons JSON
+//     if ($request->expectsJson()) {
+//         return response()->json([
+//             'success' => true,
+//             'message' => 'Sukses mendapatkan data pegawai yang terlambat',
+//             'data' => $terlambats
+//         ]);
+//     }
 
-    // Jika permintaan datang dari web, kembalikan view 'attend.terlambat' dengan data yang diperlukan
-    $npage = 3; // Contoh nilai untuk npage
-    return view('attend.terlambat', compact('terlambats', 'npage'));
-}
+//     // Jika permintaan datang dari web, kembalikan view 'attend.terlambat' dengan data yang diperlukan
+//     $npage = 3; // Contoh nilai untuk npage
+//     return view('attend.terlambat', compact('terlambats', 'npage'));
+// }
 
 
 }

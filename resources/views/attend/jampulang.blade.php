@@ -42,22 +42,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($tepat_pulang as $key => $employee)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $employee->nama }}</td>
-                                            <td>{{ $employee->jabatan }}</td>
-                                            <td>{{ $employee->pulang }}</td> <!-- Ini adalah bagian untuk menampilkan jam pulang -->
-                                            <td>{{ $employee->tanggal }}</td> <!-- Jika Anda memiliki atribut tanggal pada model karyawan -->
-                                            <td>
-                                                <!-- Tambahkan tombol untuk opsi, misalnya: edit, hapus, dll -->
-                                                <!-- Contoh tombol edit -->
-                                                <td><span style="color: white; background-color: red; border: 1px solid red; padding: 2px;">
-                                                    Pulang
-                                                </span>
-                                                </td>
-                                        </tr>
-                                    @endforeach
+                                @foreach($tepat_pulang as $key => $employee)
+    <tr>
+        <td>{{ $key + 1 }}</td>
+        <td>{{ $employee->nama }}</td>
+        <td>{{ $employee->jabatan }}</td>
+        <td>{{ $employee->pulang }}</td> <!-- Menampilkan jam pulang -->
+        <td>{{ $employee->tanggal }}</td>
+        <td>
+            {{ $employee->keterangan }}
+        </td>
+    </tr>
+@endforeach
+
+
                                 </tbody>
                             </table>
                         </div>

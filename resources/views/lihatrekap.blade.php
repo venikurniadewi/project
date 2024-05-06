@@ -2,11 +2,20 @@
 
 @section('content')
 
+<style>
+    @media print {
+        .no-print {
+            display: none;
+        }
+    }
+</style>
+
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Rekap Absensi - {{ $user->name }}</h3>
         <div class="card-header-right">
-            <div class="ml-auto">
+            <div class="ml-auto no-print">
                 <form action="{{ route('lihat-rekap', ['userId' => $user->id]) }}" method="GET" class="form-inline">
                     <!-- <label for="bulan" class="mr-2">Bulan:</label>
                     <select name="bulan" id="bulan" class="form-control mr-2">
@@ -23,9 +32,10 @@
                             <option value="{{ $i }}" {{ date('Y') == $i ? 'selected' : '' }}>{{ $i }}</option>
                         @endfor
                     </select>
-
                     <button type="submit" class="btn btn-primary">Filter</button> -->
+                    
                 </form>
+                
                 <a href="{{ route('cetak-pegawai', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-secondary" style="padding: 5px 10px; margin-right: 18px; margin-top: 10px;">
     <i class="fas fa-print"></i> &nbsp;Cetak
 </a>
@@ -85,7 +95,7 @@
 </div>
 
 <!-- Button to navigate back to laporan.blade.php -->
-<div class="mt-3">
+<div class="mt-3 no-print">
     <a href="{{ route('laporan-karyawan') }}" class="btn btn-primary">Kembali ke Laporan</a>
 </div>
 
