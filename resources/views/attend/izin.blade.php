@@ -26,32 +26,40 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title">Daftar {{$title}}</h3>
-
+                            <!-- Formulir Filter Tanggal -->
+                            <form action="{{ route('izin') }}" method="GET" class="form-inline">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="filter_date" class="sr-only">Tanggal</label>
+                                    <input type="date" class="form-control" id="filter_date" name="filter_date" placeholder="Tanggal">
+                                </div>
+                                <button type="submit" class="btn btn-primary mb-2">Filter</button>
+                            </form>
+                            <!-- Akhir Formulir Filter Tanggal -->
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover" id="table-list">
                                 <thead>
-                                <tr>
+                                    <tr>
                                         <th>No.</th>
                                         <th>Nama</th>
                                         <th>Jabatan</th>
                                         <th>Tanggal</th>
                                         <th>Alasan</th>
-                                        <th>keterangan</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($izins as $izin)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $izin->name }}</td>
-                                        <td>{{ $izin->job_title }}</td>
-                                        <td>{{ $izin->tanggal }}</td>
-                                        <td>{{ $izin->alasan }}</td>
-                                        <td>{{ $izin->keterangan }}</td>
-                                    </tr>
+                                    @foreach($izins as $izin)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $izin->name }}</td>
+                                            <td>{{ $izin->job_title }}</td>
+                                            <td>{{ $izin->tanggal }}</td>
+                                            <td>{{ $izin->alasan }}</td>
+                                            <td>{{ $izin->keterangan }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -62,28 +70,5 @@
         </div>
     </div>
 </section>
-
-<!-- Modal Export Rekap Karyawan -->
-<div class="modal fade" id="modalExportRekap" tabindex="-1" role="dialog" aria-labelledby="modalExportRekapLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalExportRekapLabel">Export Rekap Karyawan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Isi modal untuk pilihan ekspor rekap karyawan di sini -->
-                <p>Pilihan ekspor rekap karyawan</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- Tambahkan tombol untuk mengekspor rekap karyawan di sini -->
-                <button type="button" class="btn btn-primary">Export</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection

@@ -42,7 +42,7 @@
                             <i class="ti-check-box" style="font-size: 20px"></i>
                         </div>
                         <h5 class="font-16 text-uppercase mt-0 text-white-50">Tepat Waktu Hari ini</h5>
-                        <h4 class="font-500">0<i class="text-success ml-2"></i></h4>
+                        <h4 class="font-500">{{ $tepatWaktuCount }}<i class="text-success ml-2"></i></h4>
                     </div>
                     <div class="pt-2">
                         <div class="float-right">
@@ -61,7 +61,7 @@
                             <i class="ti-check-box" style="font-size: 20px"></i>
                         </div>
                         <h5 class="font-16 text-uppercase mt-0 text-white-50">Izin Hari ini</h5>
-                        <h4 class="font-500">0<i class="text-success ml-2"></i></h4>
+                        <h4 class="font-500">{{ $izinCount }}<i class="text-success ml-2"></i></h4>
                     </div>
                     <div class="pt-2">
                         <div class="float-right">
@@ -80,7 +80,7 @@
                     <i class="ti-alert" style="font-size: 20px"></i>
                 </div>
                 <h5 class="font-16 text-uppercase mt-0 text-white-50">Terlambat Hari ini</h5>
-                <h4 class="font-500">{{ count($terlambats ?? []) }}<i class="text-success ml-2"></i></h4>
+                <h4 class="font-500">{{ $terlambatCount }}<i class="text-success ml-2"></i></h4>
             </div>
             <div class="pt-2">
                 <div class="float-right">

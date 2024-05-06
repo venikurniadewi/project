@@ -18,12 +18,14 @@
         </tr>
     </thead>
     <tbody>
+    
         @foreach($rekapAbsensi as $absensi)
         <tr>
             <td>{{ $absensi->tanggal }}</td>
             <td>{{ $absensi->keterangan }}</td>
         </tr>
         @endforeach
+       
     </tbody>
 </table>
 

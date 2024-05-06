@@ -2,13 +2,26 @@
 
 @section('content')
 
+<style>
+    @media print {
+        .no-print {
+            display: none;
+        }
+    }
+</style>
+
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Rekap Absensi - {{ $user->name }}</h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <div class="card-header-right">
+<<<<<<< HEAD
             <div class="ml-auto">
                 <!-- Tombol Filter -->
+=======
+            <div class="ml-auto no-print">
+>>>>>>> 2593966f2aaad41f1be5012a1ec5b7b77a5ad5de
                 <form action="{{ route('lihat-rekap', ['userId' => $user->id]) }}" method="GET" class="form-inline">
                     <!-- Tambahkan filter jika diperlukan -->
                     <!-- <label for="bulan" class="mr-2">Bulan:</label>
@@ -26,9 +39,16 @@
                             <option value="{{ $i }}" {{ date('Y') == $i ? 'selected' : '' }}>{{ $i }}</option>
                         @endfor
                     </select>
-
                     <button type="submit" class="btn btn-primary">Filter</button> -->
+                    
                 </form>
+<<<<<<< HEAD
+=======
+                
+                <a href="{{ route('cetak-pegawai', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-secondary" style="padding: 5px 10px; margin-right: 18px; margin-top: 10px;">
+    <i class="fas fa-print"></i> &nbsp;Cetak
+</a>
+>>>>>>> 2593966f2aaad41f1be5012a1ec5b7b77a5ad5de
 
                 <!-- Tombol Cetak -->
                 <a href="{{ route('cetak-pegawai', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-secondary mr-2">
@@ -91,8 +111,13 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <!-- Tombol untuk kembali ke laporan.blade.php -->
 <div class="mt-3">
+=======
+<!-- Button to navigate back to laporan.blade.php -->
+<div class="mt-3 no-print">
+>>>>>>> 2593966f2aaad41f1be5012a1ec5b7b77a5ad5de
     <a href="{{ route('laporan-karyawan') }}" class="btn btn-primary">Kembali ke Laporan</a>
 </div>
 

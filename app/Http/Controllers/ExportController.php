@@ -125,59 +125,34 @@ public function exportlap($bulan, $tahun)
 }
 
 
-public function cetakPegawai(Request $request, $userId)
+public function cetakPegawai($userId, $bulan, $tahun)
+    {
+        $user = User::findOrFail($userId); // Assuming you have User model
+        $rekapAbsensi = Attendance::where('user_id', $userId)
+                                ->whereMonth('tanggal', $bulan)
+                                ->whereYear('tanggal', $tahun)
+                                ->get();
+        
+        $rekapIzin = Izin::where('user_id', $userId)
+                         ->whereMonth('tanggal', $bulan)
+                         ->whereYear('tanggal', $tahun)
+                         ->get();
+
+        return view('export.cetak_pegawai', compact('user', 'rekapAbsensi', 'rekapIzin'));
+    }
+
+public function pegawaiPdf($userId, $bulan, $tahun)
 {
-    $bulan = $request->input('bulan') ?? date('m');
-    $tahun = $request->input('tahun') ?? date('Y');
-
-    // Find the user by ID
-    $user = User::findOrFail($userId);
-
-    // Retrieve attendance records for the user based on selected month and year
-    $rekapAbsensi = $user->attendances()
-        ->whereMonth('tanggal', $bulan)
-        ->whereYear('tanggal', $tahun)
-        ->orderBy('tanggal', 'asc')
-        ->get();
-
-    // Retrieve izin records for the user based on selected month and year
-    $rekapIzin = $user->izins()
-        ->whereMonth('tanggal', $bulan)
-        ->whereYear('tanggal', $tahun)
-        ->orderBy('tanggal', 'asc')
-        ->get();
-
-    // Pass the user, attendance, and izin data to the view along with selected month and year
-    return view('export.cetak_pegawai', [
-        'user' => $user,
-        'rekapAbsensi' => $rekapAbsensi,
-        'rekapIzin' => $rekapIzin,
-        'bulan' => $bulan,
-        'tahun' => $tahun,
-    ]);
-}
-
-public function pegawaiPdf(Request $request, $userId)
-{
-    $bulan = $request->input('bulan') ?? date('m');
-    $tahun = $request->input('tahun') ?? date('Y');
-
-    // Find the user by ID
-    $user = User::findOrFail($userId);
-
-    // Retrieve attendance records for the user based on selected month and year
-    $rekapAbsensi = $user->attendances()
-        ->whereMonth('tanggal', $bulan)
-        ->whereYear('tanggal', $tahun)
-        ->orderBy('tanggal', 'asc')
-        ->get();
-
-    // Retrieve izin records for the user based on selected month and year
-    $rekapIzin = $user->izins()
-        ->whereMonth('tanggal', $bulan)
-        ->whereYear('tanggal', $tahun)
-        ->orderBy('tanggal', 'asc')
-        ->get();
+    $user = User::findOrFail($userId); // Assuming you have User model
+        $rekapAbsensi = Attendance::where('user_id', $userId)
+                                ->whereMonth('tanggal', $bulan)
+                                ->whereYear('tanggal', $tahun)
+                                ->get();
+        
+        $rekapIzin = Izin::where('user_id', $userId)
+                         ->whereMonth('tanggal', $bulan)
+                         ->whereYear('tanggal', $tahun)
+                         ->get();
 
     // Create PDF instance
     $pdf = new Dompdf();

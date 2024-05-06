@@ -44,10 +44,11 @@ Route::middleware('auth')->group(function () {
 //route beranda
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/data_karyawan', [DashboardController::class, 'jumlah']);
-Route::get('/tepat_waktu', [DashboardController::class, 'tepatwaktu']);
-Route::get('/jampulang', [AttendanceController::class, 'jampulang']);
+Route::get('/tepat_waktu', [DashboardController::class, 'tepatwaktu'])->name('tepatwaktu');
+Route::get('/tepatwaktu/filter', [DashboardController::class, 'tepatwaktu'])->name('tepatwaktu.filter');
+Route::get('/jampulang', [DashboardController::class, 'pulang']);
 Route::get('/terlambat', [DashboardController::class, 'terlambat'])->name('terlambat');
-Route::get('/izin', [DashboardController::class, 'izin']);
+Route::get('/izin', [DashboardController::class, 'izin'])->name('izin');
 Route::get('/rekap_absen', [DashboardController::class, 'rekap']);
 Route::get('/laporan', [DashboardController::class, 'laporan'])->name('laporan-karyawan');
 // Route::get('/data_karyawan', [PegawaiController::class, 'data']);
@@ -75,12 +76,20 @@ Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai
 // Menghapus data pegawai
 Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus'])->name('pegawai.hapus');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2593966f2aaad41f1be5012a1ec5b7b77a5ad5de
 Route::get('/lihat-rekap/{userId}', [RekapController::class, 'lihatRekap'])->name('lihat-rekap');
 Route::get('/generate-pdf/{bulan}/{tahun}', [ExportController::class, 'exportlap'])->name('generate-pdf');
 Route::get('/cetak-laporan/{bulan}/{tahun}', [ExportController::class, 'cetaklap'])->name('cetak-laporan');
 
 Route::get('/cetak-pegawai/{userId}/{bulan}/{tahun}', [ExportController::class, 'cetakPegawai'])->name('cetak-pegawai');
 Route::get('/laporan-pegawai-pdf/{userId}/{bulan}/{tahun}', [ExportController::class, 'pegawaiPDF'])->name('pegawai-pdf');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2593966f2aaad41f1be5012a1ec5b7b77a5ad5de
 Route::post('save-attendance', [AttendanceController::class, 'saveAttendance']);
 });
 
