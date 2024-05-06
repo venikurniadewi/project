@@ -69,7 +69,7 @@ class DashboardController extends Controller
 
     public function izin()
     {
-        $npage = 4;
+        $npage = 5;
         // $izins = Izin::all();
         $izins = Izin::select('izins.*', 'users.name as name', 'users.job_title as job_title')
         ->join('users', 'users.id', '=', 'izins.user_id')
@@ -86,33 +86,51 @@ class DashboardController extends Controller
     
     public function laporan(Request $request)
     {
-        $npage = 7;
+        $npage = 8;
+        // $npage = 8;
         
     
-        // Ambil data laporan berdasarkan filter yang diberikan
-        $laporan = User::with(['attendance', 'izin'])
-                    // ->whereHas('attendance', function ($query) use ($request) {
-                    //     if ($request->has('status_presensi')) {
-                    //         $query->where('status', $request->status_presensi);
-                    //     }
-                    //     if ($request->has('tanggal_awal') && $request->has('tanggal_akhir')) {
-                    //         $query->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir]);
-                    //     }
-                    // })
-                    // ->whereHas('izin', function ($query) use ($request) {
-                    //     if ($request->has('jenis_izin')) {
-                    //         $query->where('jenis_izin', $request->jenis_izin);
-                    //     }
-                    //     if ($request->has('tanggal_awal') && $request->has('tanggal_akhir')) {
-                    //         $query->whereBetween('tanggal', [$request->tanggal_awal, $request->tanggal_akhir]);
-                    //     }
-                    // })
-                    ->get();
-
-                    return view('laporan', ['laporan' => $laporan, 'npage' => $npage]);
-                
-    }
+        $bulan = $request->input('bulan') ?? date('m');
+        $tahun = $request->input('tahun') ?? date('Y');
     
+        // Ambil data izin sesuai bulan dan tahun yang dipilih
+        $izins = Izin::select('izins.*', 'izins.tanggal as tanggal_izin', 'izins.keterangan as keterangan_izin', 'users.name as name', 'users.job_title as job_title')
+            ->join('users', 'users.id', '=', 'izins.user_id')
+            ->whereMonth('izins.tanggal', $bulan)
+            ->whereYear('izins.tanggal', $tahun)
+            ->get();
+    
+        // Ambil data kehadiran sesuai bulan dan tahun yang dipilih
+        $attendances = Attendance::select('attendances.*', 'attendances.tanggal as tanggal_hadir', 'attendances.keterangan as keterangan_hadir', 'users.name as name', 'users.job_title as job_title')
+            ->join('users', 'users.id', '=', 'attendances.user_id')
+            ->whereMonth('attendances.tanggal', $bulan)
+            ->whereYear('attendances.tanggal', $tahun)
+            ->get();
+        
+        // Gabungkan data izin dan kehadiran
+        $laporans = $izins->merge($attendances);
+    
+        // Ambil data user dengan relasi kehadiran dan izin
+        $laporans = User::with(['attendances', 'izins'])
+                        ->where('role', 'pegawai')
+                        ->get()
+                        ->map(function ($user) use ($bulan, $tahun) {
+                            // Filter kehadiran sesuai bulan dan tahun yang dipilih
+                            $user->attendances = $user->attendances()->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->get();
+                            // Filter izin sesuai bulan dan tahun yang dipilih
+                            $user->izins = $user->izins()->whereMonth('tanggal', $bulan)->whereYear('tanggal', $tahun)->get();
+                            // Hitung jumlah kehadiran dan izin
+                            $user->hadir_count = $user->attendances->count();
+                            $user->izin_count = $user->izins->count();
+                            return $user;
+                        });
+    
+        return view('laporan', [
+            'laporans' => $laporans,
+            'npage' => $npage,
+            'bulan' => $bulan, 'tahun' => $tahun
+        ]);
+    }
     
 
     public function getPegawai()

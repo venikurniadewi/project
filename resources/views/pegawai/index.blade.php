@@ -8,11 +8,125 @@
 
 <div class="d-flex justify-content-between align-items-center mt-3 mb-3">
     <ul>
-        <a type="button" href="{{ route('pegawai.tambah') }}" class="btn btn-primary" style="padding: 5px 10px; color: #fff; margin-right: 18px; margin-top: 10px;" onclick="togglePopup()">
+        <button type="button" class="btn btn-primary" style="padding: 5px 10px; color: #fff; margin-right: 18px; margin-top: 10px;" onclick="togglePopup()">
             <i class="fas fa-plus"></i> &nbsp;Tambah Akun Karyawan
-        </a>
+        </button>
     </ul>
 </div>
+
+<div class="modal fade" id="tambahAkunModal" tabindex="-1" role="dialog" aria-labelledby="tambahAkunModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+              <div class="modal-header" style="background-color: #f8f9fa; border-bottom: none;">
+            <h5 class="modal-title">Tambah Akun Karyawan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()" style="background-color: transparent; border: none;">
+                <span aria-hidden="true" style="font-size: 24px; color: red;">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('pegawai.store') }}" method="POST">
+                    @csrf
+                    
+                    <div class="form-group">
+                        <label for="name">Nama Karyawan</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama karyawan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Masukkan nomor telepon" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job_title">Jabatan</label>
+                        <input type="text" class="form-control" id="job_title" name="job_title" placeholder="Masukkan jabatan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Alamat</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Masukkan alamat" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Lihat Pegawai -->
+@foreach($pegawai as $item)
+    <div class="modal fade" id="lihatPegawaiModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="lihatPegawaiModalLabel{{ $item->id }}" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatPegawaiModalLabel">Detail Pegawai</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="PegawaiCloseModal('{{ $item->id }}')" style="background-color: transparent; border: none;">
+                <span aria-hidden="true" style="font-size: 24px; color: red;">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>Nama:</strong>  {{ $item->name }}</p>
+                <p><strong>Email:</strong> {{ $item->email }}</p>
+                <p><strong>Nomor Telepon:</strong> {{ $item->phone_number }}</p>
+                <p><strong>Jabatan:</strong> {{ $item->job_title }}</p>
+                <p><strong>Alamat:</strong>{{ $item->address }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+<!-- END MODAL -->
+
+<!-- Modal Edit Pegawai -->
+@foreach($pegawai as $item)
+<div class="modal fade" id="editPegawaiModal{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="editPegawaiModalLabel{{ $item->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPegawaiModalLabel{{ $item->id }}">Edit Pegawai</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeEditModal('{{ $item->id }}')">
+    <span aria-hidden="true">&times;</span>
+</button>
+
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('pegawai.update', ['id' => $item->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="name">Nama Karyawan</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $item->name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $item->email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ $item->phone_number }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="job_title">Jabatan</label>
+                        <input type="text" class="form-control" id="job_title" name="job_title" value="{{ $item->job_title }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Alamat</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ $item->address }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
 
 <section class="content">
     <div class="container-fluid">
@@ -21,7 +135,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h1 class="card-title">Data Profile Karyawan</h1> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            <h1 class="card-title">Data Profile Karyawan</h1> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
                             <div class="card-header-right">
                                 <div class="ml-auto">
@@ -48,10 +162,6 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop through your data here to display all employees -->
-                                    <!-- @php
-                                    $currentPage = $pegawai->currentPage() ?? 1; // Get current page
-                                    $startNumber = ($currentPage - 1) * 10 + 1; // Calculate starting number
-                                    @endphp -->
                                     @php
     $currentPage = $pegawai->currentPage() ?? 1; // Get current page
     $perPage = $pegawai->perPage(); // Get number of items per page
@@ -68,8 +178,8 @@
                                             <td>{{ $item->job_title }}</td>
                                             <td>{{ $item->address }}</td>
                                             <td class="action-buttons text-right"> <!-- Tambahkan class "text-right" untuk menggeser ke kanan -->
-                                                <a href="{{ route('pegawai.show', ['id' => $item->id]) }}" class="btn-green"><i class="fas fa-eye"></i> Lihat</a>
-                                                <a href="{{ route('pegawai.edit', ['id' => $item->id]) }}" class="btn-orange"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-info btn-green" onclick="openModal('{{ $item->id }}')">Lihat</a>
+                                            <a href="#" class="btn-orange" onclick="openEditModal('{{ $item->id }}')"><i class="fas fa-edit"></i> Edit</a>
                                                 <form action="{{ route('pegawai.hapus', ['id' => $item->id]) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -113,7 +223,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Tambahkan CSS Anda di sini -->
     <link rel="stylesheet" href="{{ asset('tabler/css/dk-ds.css') }}"> <!-- Ganti 'css/dk-ds.css' dengan path yang sesuai dengan lokasi file CSS Anda -->
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
 <script>
     function searchTable() {
         var input, filter, table, tr, td, i, txtValue;
@@ -133,6 +243,36 @@
             }
         }
     }
+
+    // Fungsi untuk menampilkan modal
+    function closeModal() {
+        $('#tambahAkunModal').modal('hide');
+    }
+    
+    function togglePopup() {
+        $('#tambahAkunModal').modal('toggle');
+    } 
+
+    function openModal(id) {
+        $('#lihatPegawaiModal' + id).modal('show');
+    }
+
+    function PegawaiCloseModal(id) {
+        $('#lihatPegawaiModal' + id).modal('hide');
+    }
+
+    function openEditModal(id) {
+        $('#editPegawaiModal' + id).modal('show');
+    }
+    function openEditModal(id) {
+    $('#editPegawaiModal' + id).modal('show');
+}
+
+function closeEditModal(id) {
+    $('#editPegawaiModal' + id).modal('hide');
+}
+
+
 </script>
 
 @endsection

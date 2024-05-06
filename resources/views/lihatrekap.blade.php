@@ -4,10 +4,13 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Rekap Absensi - {{ $user->name }}</h3>
+        <h3 class="card-title">Rekap Absensi - {{ $user->name }}</h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
         <div class="card-header-right">
             <div class="ml-auto">
+                <!-- Tombol Filter -->
                 <form action="{{ route('lihat-rekap', ['userId' => $user->id]) }}" method="GET" class="form-inline">
+                    <!-- Tambahkan filter jika diperlukan -->
                     <!-- <label for="bulan" class="mr-2">Bulan:</label>
                     <select name="bulan" id="bulan" class="form-control mr-2">
                         @for ($i = 1; $i <= 12; $i++)
@@ -26,22 +29,24 @@
 
                     <button type="submit" class="btn btn-primary">Filter</button> -->
                 </form>
-                <a href="{{ route('cetak-pegawai', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-secondary" style="padding: 5px 10px; margin-right: 18px; margin-top: 10px;">
-    <i class="fas fa-print"></i> &nbsp;Cetak
-</a>
 
-<a href="{{ route('pegawai-pdf', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-primary" style="padding: 5px 10px; color: #fff; margin-right: 18px; margin-top: 10px;">
-    <i class="fas fa-file-pdf"></i> &nbsp;Export PDF
-</a>
+                <!-- Tombol Cetak -->
+                <a href="{{ route('cetak-pegawai', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-secondary mr-2">
+                    <i class="fas fa-print"></i> Cetak
+                </a>
 
-</a>
-
+                <!-- Tombol Export PDF -->
+                <a href="{{ route('pegawai-pdf', ['userId' => $user->id, 'bulan' => request('bulan', date('m')), 'tahun' => request('tahun', date('Y'))]) }}" class="btn btn-primary">
+                    <i class="fas fa-file-pdf"></i> Export PDF
+                </a>
             </div>
         </div>
     </div>
+    
     <div class="card-body">
-        <h4>Kehadiran:</h4>
         <div class="table-responsive">
+            <!-- Tabel Kehadiran -->
+            <h4>Kehadiran:</h4>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -60,8 +65,10 @@
             </table>
         </div>
         <hr>
-        <h4>Izin:</h4>
+
         <div class="table-responsive">
+            <!-- Tabel Izin -->
+            <h4>Izin:</h4>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -84,7 +91,7 @@
     </div>
 </div>
 
-<!-- Button to navigate back to laporan.blade.php -->
+<!-- Tombol untuk kembali ke laporan.blade.php -->
 <div class="mt-3">
     <a href="{{ route('laporan-karyawan') }}" class="btn btn-primary">Kembali ke Laporan</a>
 </div>

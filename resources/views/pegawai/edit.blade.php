@@ -98,16 +98,22 @@
         <h1>Edit Pegawai</h1>
         <label for="name">Nama:</label>
         <input type="text" id="name" name="name" value="{{ $pegawai->name }}">
+
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" value="{{ $pegawai->email }}">
+
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" placeholder="Isi jika akan diganti" @if(isset($pegawai)) value="{{ $pegawai->password }}" @endif>
+        
         <label for="phone_number">Nomor Telepon:</label>
         <input type="text" id="phone_number" name="phone_number" value="{{ $pegawai->phone_number }}">
+
         <label for="job_title">Jabatan:</label>
         <input type="text" id="job_title" name="job_title" value="{{ $pegawai->job_title }}">
+
         <label for="address">Alamat:</label>
         <input type="text" id="address" name="address" value="{{ $pegawai->address }}">
+        
         <button type="submit">Simpan Perubahan</button>
         <a href="/data-profil" class="button">Batal</a>
     </form>

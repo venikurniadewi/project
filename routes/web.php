@@ -71,23 +71,18 @@ Route::get('/pegawai/{id}', [PegawaiController::class, 'show'])->name('pegawai.s
 // Menampilkan form edit pegawai
 Route::get('/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
 // Menyimpan perubahan data pegawai
-Route::put('/pegawai/{id}/update', [PegawaiController::class, 'update'])->name('pegawai.update');
+Route::put('/pegawai/{id}', [PegawaiController::class, 'update'])->name('pegawai.update');
 // Menghapus data pegawai
 Route::delete('/pegawai/{id}', [PegawaiController::class, 'hapus'])->name('pegawai.hapus');
 
-
-<<<<<<< HEAD
 Route::get('/lihat-rekap/{userId}', [RekapController::class, 'lihatRekap'])->name('lihat-rekap');
 Route::get('/generate-pdf/{bulan}/{tahun}', [ExportController::class, 'exportlap'])->name('generate-pdf');
 Route::get('/cetak-laporan/{bulan}/{tahun}', [ExportController::class, 'cetaklap'])->name('cetak-laporan');
 
 Route::get('/cetak-pegawai/{userId}/{bulan}/{tahun}', [ExportController::class, 'cetakPegawai'])->name('cetak-pegawai');
 Route::get('/laporan-pegawai-pdf/{userId}/{bulan}/{tahun}', [ExportController::class, 'pegawaiPDF'])->name('pegawai-pdf');
-
-=======
 Route::post('save-attendance', [AttendanceController::class, 'saveAttendance']);
 });
->>>>>>> f1988e14f8ec2578b652e663aa82e78d56e01337
 
 
 

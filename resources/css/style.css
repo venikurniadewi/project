@@ -1,0 +1,29 @@
+/* style.css */
+.card-header-right {
+    margin-top: 10px;
+    margin-right: 18px;
+    float: right;
+}
+
+.btn-group {
+    margin-left: 10px;
+}
+
+.btn-print,
+.btn-pdf {
+    padding: 5px 10px;
+    margin-right: 18px;
+    color: #fff;
+}
+
+.btn-print {
+    background-color: #6c757d;
+}
+
+.btn-pdf {
+    background-color: #007bff;
+}
+
+.filter-form {
+    margin-bottom: 10px;
+}

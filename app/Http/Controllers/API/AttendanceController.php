@@ -157,7 +157,7 @@ public function terlambat(Request $request)
     }
 
     // Jika permintaan datang dari web, kembalikan view 'attend.terlambat' dengan data yang diperlukan
-    $npage = 3; // Contoh nilai untuk npage
+    $npage = 4; // Contoh nilai untuk npage
     return view('attend.terlambat', compact('terlambats', 'npage'));
 }
 

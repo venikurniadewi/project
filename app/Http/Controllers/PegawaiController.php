@@ -48,10 +48,10 @@ class PegawaiController extends Controller
 
     // Menampilkan detail pegawai
     public function show($id)
-    {
-        $pegawai = User::findOrFail($id);
-        return view('pegawai.lihat', ['pegawai' => $pegawai]);
-    }
+{
+    $pegawai = User::findOrFail($id)->first();
+    return view('pegawai.lihat', compact('pegawai'));
+}     
 
     // Menampilkan halaman edit data pegawai
     public function edit($id)
@@ -62,26 +62,26 @@ class PegawaiController extends Controller
 
     // Mengupdate data pegawai
     public function update(Request $request, $id)
-    {
-        // Validasi data yang dikirimkan dari formulir
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:users,email,'.$id,
-            'password' => 'required',
-            'phone_number' => 'required',
-            'job_title' => 'required',
-            'address' => 'required',
-        ]);
+{
+    // Validasi data yang dikirimkan dari formulir
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'email' => 'required|unique:users,email,'.$id,
+        'phone_number' => 'required',
+        'job_title' => 'required',
+        'address' => 'required',
+    ]);
 
-        // Temukan pegawai yang ingin diupdate
-        $pegawai = User::findOrFail($id);
+    // Temukan pegawai yang ingin diupdate
+    $pegawai = User::where('id', $id)->firstOrFail();
 
-        // Update data pegawai
-        $pegawai->update($validatedData);
+    // Update data pegawai
+    $pegawai->update($validatedData);
 
-        // Redirect kembali ke halaman data pegawai setelah data berhasil diupdate
-        return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui.');
-    }
+    // Redirect kembali ke halaman data pegawai setelah data berhasil diupdate
+    return redirect()->route('pegawai.index')->with('success', 'Data pegawai berhasil diperbarui.');
+}
+
 
     // Menghapus data pegawai
     public function hapus($id)

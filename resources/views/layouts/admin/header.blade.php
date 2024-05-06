@@ -17,7 +17,6 @@
       </div>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-          <span class="avatar avatar-sm" style="background-image: url({{ asset('tabler/static/avatars/000m.jpg') }})"></span>
           <div class="d-none d-xl-block ps-2">
           <div>{{ Session::get('user_name') }}</div>
             <div class="mt-1 small text-secondary">Administrator</div>
